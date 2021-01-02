@@ -18,12 +18,16 @@ namespace CreateXmlWebApi.Models
         public IntranetDatabaseString()
             : base("name=IntranetDatabaseString")
         {
-        }    
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
-        }    
-        public virtual DbSet<contactnew> contactnew { get; set; }
+        }
+    
         public virtual DbSet<View_ContactList> View_ContactList { get; set; }
+        public virtual DbSet<contactnew> contactnew { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<TelAdmin> TelAdmin { get; set; }
     }
 }

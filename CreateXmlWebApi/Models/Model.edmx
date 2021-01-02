@@ -5,6 +5,24 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="IntranetDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Building" Type="nvarchar" MaxLength="100" />
+          <Property Name="Deputy" Type="nvarchar" MaxLength="255" />
+          <Property Name="OfficePosition" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="DirectPhoneNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="CallingCenter" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="200" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Pic" Type="varchar" MaxLength="200" />
+          <Property Name="prsnum" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
         <EntityType Name="contactnew">
           <Key>
             <PropertyRef Name="Id" />
@@ -22,6 +40,14 @@
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="Pic" Type="varchar" MaxLength="200" />
           <Property Name="prsnum" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TelAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prsnum" Type="int" />
+          <Property Name="Enabled" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'IntranetDatabase.dbo.View_ContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -42,7 +68,9 @@ warning 6002: The table/view 'IntranetDatabase.dbo.View_ContactList' does not ha
           <Property Name="NumBuild" Type="varchar" MaxLength="13" Nullable="false" />
         </EntityType>
         <EntityContainer Name="IntranetDatabaseModelStoreContainer">
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contactnew" EntityType="Self.contactnew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelAdmin" EntityType="Self.TelAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="View_ContactList" EntityType="Self.View_ContactList" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_ContactList].[Prsnum] AS [Prsnum], 
@@ -81,6 +109,8 @@ warning 6002: The table/view 'IntranetDatabase.dbo.View_ContactList' does not ha
         <EntityContainer Name="IntranetDatabaseString" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="View_ContactList" EntityType="Self.View_ContactList" />
           <EntitySet Name="contactnew" EntityType="IntranetDatabaseModel.contactnew" />
+          <EntitySet Name="Contact" EntityType="IntranetDatabaseModel.Contact" />
+          <EntitySet Name="TelAdmin" EntityType="IntranetDatabaseModel.TelAdmin" />
         </EntityContainer>
         <EntityType Name="contactnew">
           <Key>
@@ -99,6 +129,32 @@ warning 6002: The table/view 'IntranetDatabase.dbo.View_ContactList' does not ha
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <Property Name="Pic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="prsnum" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Building" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Deputy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OfficePosition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DirectPhoneNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CallingCenter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Pic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="prsnum" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TelAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prsnum" Type="Int32" />
+          <Property Name="Enabled" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -137,6 +193,34 @@ warning 6002: The table/view 'IntranetDatabase.dbo.View_ContactList' does not ha
                 <ScalarProperty Name="Deputy" ColumnName="Deputy" />
                 <ScalarProperty Name="Building" ColumnName="Building" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="IntranetDatabaseModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="prsnum" ColumnName="prsnum" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="CallingCenter" ColumnName="CallingCenter" />
+                <ScalarProperty Name="DirectPhoneNo" ColumnName="DirectPhoneNo" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="OfficePosition" ColumnName="OfficePosition" />
+                <ScalarProperty Name="Deputy" ColumnName="Deputy" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelAdmin">
+            <EntityTypeMapping TypeName="IntranetDatabaseModel.TelAdmin">
+              <MappingFragment StoreEntitySet="TelAdmin">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Prsnum" ColumnName="Prsnum" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

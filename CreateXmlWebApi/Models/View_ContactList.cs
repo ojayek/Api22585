@@ -14,7 +14,7 @@ namespace CreateXmlWebApi.Models
     
     public partial class View_ContactList
     {
-        public Nullable<decimal> Prsnum { get; set; }
+        public decimal Prsnum { get; set; }
         public string Nam { get; set; }
         public string NamKhanevadegi { get; set; }
         public string Sharh_Onvan { get; set; }
