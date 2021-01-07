@@ -27,15 +27,15 @@ namespace CreateXmlWebApi.Controllers
             {
                 var prsdata = new Person();
                 prsdata.Prsnum = int.Parse(item.Prsnum.ToString());
-                prsdata.Nam = item.Nam.Replace('ي', 'ی').Replace('ك','ک');
-                prsdata.NamKhanevadegi = item.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Nam = (item.Nam != null) ? item.Nam.Replace('ي', 'ی').Replace('ك','ک'):null;
+                prsdata.NamKhanevadegi = (item.NamKhanevadegi != null) ? item.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 prsdata.NamKhanevadegiLatin = item.NamKhanevadegiLatin;
-                prsdata.Moavenat = item.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Moavenat =(item.Moavenat !=null)? item.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 prsdata.Email = item.Email;
-                prsdata.Proj_Name = item.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');
-                prsdata.NumBuild = item.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Proj_Name = (item.Proj_Name != null) ? item.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک'):null;
+                prsdata.NumBuild = (item.NumBuild != null) ? item.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 prsdata.NamLatin = item.NamLatin;
-                prsdata.Sharh_Onvan = item.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Sharh_Onvan = (item.Sharh_Onvan != null) ? item.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 if (!lstContacts.Where(o => o.Prsnum == prsdata.Prsnum).Any())
                 {
                     lstContacts.Add(prsdata);
@@ -65,15 +65,15 @@ namespace CreateXmlWebApi.Controllers
             {
                 var prsdata = new Person();
                 prsdata.Prsnum = int.Parse(item.Prsnum.ToString());
-                prsdata.Nam = item.Nam.Replace('ي', 'ی').Replace('ك', 'ک');
-                prsdata.NamKhanevadegi = item.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Nam = (item.Nam != null) ? item.Nam.Replace('ي', 'ی').Replace('ك', 'ک'):null;
+                prsdata.NamKhanevadegi = (item.NamKhanevadegi != null) ? item.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 prsdata.NamKhanevadegiLatin = item.NamKhanevadegiLatin;
-                prsdata.Moavenat = item.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Moavenat = (item.Moavenat != null) ? item.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 prsdata.Email = item.Email;
-                prsdata.Proj_Name = item.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');
-                prsdata.NumBuild = item.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Proj_Name = (item.Proj_Name != null) ? item.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک'):null;
+                prsdata.NumBuild = (item.NumBuild != null) ? item.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 prsdata.NamLatin = item.NamLatin;
-                prsdata.Sharh_Onvan = item.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
+                prsdata.Sharh_Onvan = (item.Sharh_Onvan != null) ? item.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک'):null;
                 if (!lstContacts.Where(o => o.Prsnum == prsdata.Prsnum).Any())
                 {
                     lstContacts.Add(prsdata);
@@ -105,10 +105,10 @@ namespace CreateXmlWebApi.Controllers
                 insertdBefor.DirectPhoneNo = data.DirectPhoneNo;
                 insertdBefor.Tel = data.Tel;
                 insertdBefor.Name= MainData.Nam.Replace('ي', 'ی').Replace('ك', 'ک') + " " + MainData.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
-                insertdBefor.OfficePosition = MainData.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');
-                insertdBefor.Title = MainData.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
-                insertdBefor.Building = MainData.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
-                insertdBefor.Deputy = MainData.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک'); 
+                insertdBefor.OfficePosition = (MainData.Proj_Name != null) ? MainData.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک'):null;
+                insertdBefor.Title = (MainData.Sharh_Onvan != null) ? MainData.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک'):null;
+                insertdBefor.Building = (MainData.NumBuild != null) ? MainData.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک'):null;
+                insertdBefor.Deputy = (MainData.Moavenat != null) ? MainData.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک'):null; 
                 insertdBefor.Pic = MainData.Prsnum + ".jpg";
                 insertdBefor.Enabled = true;
              
@@ -121,10 +121,10 @@ namespace CreateXmlWebApi.Controllers
                 contact.DirectPhoneNo = data.DirectPhoneNo;
                 contact.Tel = data.Tel;
                 contact.Name = MainData.Nam.Replace('ي', 'ی').Replace('ك', 'ک') + " " + MainData.NamKhanevadegi.Replace('ي', 'ی').Replace('ك', 'ک');
-                contact.OfficePosition = MainData.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک');                
-                contact.Title = MainData.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک');
-                contact.Building = MainData.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک');
-                contact.Deputy = MainData.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک');
+                contact.OfficePosition = (MainData.Proj_Name != null) ? MainData.Proj_Name.Replace('ي', 'ی').Replace('ك', 'ک') : null;
+                contact.Title =    (MainData.Sharh_Onvan != null) ? MainData.Sharh_Onvan.Replace('ي', 'ی').Replace('ك', 'ک') : null;
+                contact.Building = (MainData.NumBuild != null) ? MainData.NumBuild.Replace('ي', 'ی').Replace('ك', 'ک') : null;
+                contact.Deputy =   (MainData.Moavenat != null) ? MainData.Moavenat.Replace('ي', 'ی').Replace('ك', 'ک') : null;
                 contact.prsnum = MainData.Prsnum;
                 contact.Pic = MainData.Prsnum + ".jpg";
                 contact.Enabled = true;
