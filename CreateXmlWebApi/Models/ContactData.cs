@@ -7,15 +7,7 @@ namespace CreateXmlWebApi.Models
 {
     public class ContactData
     {
-        //  ,[Nam]
-        //,[NamKhanevadegi]
-        //,[Sharh_Onvan]
-        //,[Proj_Name]
-        //,[Moavenat]
-        //,[NamLatin]
-        //,[Email]
-        //,[NamKhanevadegiLatin]
-        //,[NumBuild]
+       
         public string Nam { get; set; }
         public string NamKhanevadegi { get; set; }
         public string Sharh_Onvan { get; set; }

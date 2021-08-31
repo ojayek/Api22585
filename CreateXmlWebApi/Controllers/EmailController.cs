@@ -110,21 +110,40 @@ namespace CreateXmlWebApi.Controllers
                 message.To = To;
                 message.Body = Body;
                 message.Subject = Subject;
+
+
+
                 //
                 XmlDocument doc = new XmlDocument();
+                doc.PreserveWhitespace = true;
+                //
                 XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
                 doc.AppendChild(dec);
 
-                //doc.LoadXml("<Letter><Protocol>wrench</Protocol></Letter>");
+
+
+
+
+
+                ////
+                //XmlDocument doc = new XmlDocument();
+                //doc.PreserveWhitespace = true;
+                ////
+
+                //XmlDocument dec = new XmlDocument();
+                //XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                //doc.AppendChild(dec);
+
+                ////doc.LoadXml("<Letter><Protocol>wrench</Protocol></Letter>");
                 XmlElement root = doc.CreateElement("Letter");
                 XmlElement id = doc.CreateElement("Protocol");
                 root.AppendChild(id);
                 doc.AppendChild(root);
                 id.SetAttribute("NAME", "ECE");
-                id.SetAttribute("version", "1.0.1");
+                id.SetAttribute("version", "1.01");
                 XmlElement id2 = doc.CreateElement("Software");
                 id2.SetAttribute("GUID", "{0200414A-0500-6F46-726D-73000053568B}");
-                id2.SetAttribute("SoftwareDeveloper", "MiiroFiler");
+                id2.SetAttribute("SoftwareDeveloper", "ojayek");
                 id2.SetAttribute("Version", "1");
                 XmlElement id3 = doc.CreateElement("Sender");
                 id3.SetAttribute("Code", "15560000");

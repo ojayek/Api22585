@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateXmlWebApi", "CreateXmlWebApi\CreateXmlWebApi.csproj", "{CDB3B943-02CB-4245-88EF-202DC10BC3FB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA03B5E7-C690-4700-A9D6-967E32D8E4B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

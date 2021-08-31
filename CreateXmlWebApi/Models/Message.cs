@@ -15,7 +15,7 @@ namespace CreateXmlWebApi.Models
         {
             get
             {
-                return string.IsNullOrEmpty(_email) ? "ece@moshanir.co" : _email;
+                return string.IsNullOrEmpty(_email) ? "ece1400@moshanir.co" : _email;
             }
 
             set { _email = value; }
@@ -25,7 +25,7 @@ namespace CreateXmlWebApi.Models
         {
             get
             {
-                return string.IsNullOrEmpty(_password) ? "ece@123" : _password;
+                return string.IsNullOrEmpty(_password) ? "ece@1400" : _password;
             }
 
             set { _password = value; }
