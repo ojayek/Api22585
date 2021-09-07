@@ -17,13 +17,11 @@
           <Property Name="FileName" Type="nvarchar" MaxLength="800" />
           <Property Name="FileSize" Type="bigint" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MeetingParticipents">
           <Key>
             <PropertyRef Name="Prsnum" />
           </Key>
-          <Property Name="Prsnum" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Prsnum" Type="int" Nullable="false" />
           <Property Name="Nam" Type="nvarchar" MaxLength="50" />
           <Property Name="NamKhanevadegi" Type="nvarchar" MaxLength="50" />
           <Property Name="VahedSazmani" Type="nvarchar" MaxLength="255" />
@@ -56,6 +54,15 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
           <Property Name="Creator" Type="int" />
           <Property Name="Number" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Participators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeetingId" Type="int" />
+          <Property Name="ParticipentId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
         <Association Name="FK_MeetingFiles_Meetings">
           <End Role="Meetings" Type="Self.Meetings" Multiplicity="0..1" />
           <End Role="MeetingFiles" Type="Self.MeetingFiles" Multiplicity="*" />
@@ -80,21 +87,36 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Participators_MeetingParticipents">
+          <End Role="MeetingParticipents" Type="Self.MeetingParticipents" Multiplicity="0..1" />
+          <End Role="Participators" Type="Self.Participators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingParticipents">
+              <PropertyRef Name="Prsnum" />
+            </Principal>
+            <Dependent Role="Participators">
+              <PropertyRef Name="ParticipentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Participators_Meetings">
+          <End Role="Meetings" Type="Self.Meetings" Multiplicity="0..1" />
+          <End Role="Participators" Type="Self.Participators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meetings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Participators">
+              <PropertyRef Name="MeetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MoshanirMeetingModelStoreContainer">
           <EntitySet Name="MeetingFiles" EntityType="Self.MeetingFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingParticipents" EntityType="Self.MeetingParticipents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingSubjects" EntityType="Self.MeetingSubjects" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingParticipents" EntityType="Self.MeetingParticipents" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MeetingParticipents].[Prsnum] AS [Prsnum], 
-    [MeetingParticipents].[Nam] AS [Nam], 
-    [MeetingParticipents].[NamKhanevadegi] AS [NamKhanevadegi], 
-    [MeetingParticipents].[VahedSazmani] AS [VahedSazmani], 
-    [MeetingParticipents].[Moavenat] AS [Moavenat], 
-    [MeetingParticipents].[Noe_Sherkat] AS [Noe_Sherkat], 
-    [MeetingParticipents].[Noe_Eshteghal] AS [Noe_Eshteghal]
-    FROM [dbo].[MeetingParticipents] AS [MeetingParticipents]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Participators" EntityType="Self.Participators" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_MeetingFiles_Meetings" Association="Self.FK_MeetingFiles_Meetings">
             <End Role="Meetings" EntitySet="Meetings" />
             <End Role="MeetingFiles" EntitySet="MeetingFiles" />
@@ -102,6 +124,14 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
           <AssociationSet Name="FK_MeetingSubjects_Meetings" Association="Self.FK_MeetingSubjects_Meetings">
             <End Role="Meetings" EntitySet="Meetings" />
             <End Role="MeetingSubjects" EntitySet="MeetingSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participators_MeetingParticipents" Association="Self.FK_Participators_MeetingParticipents">
+            <End Role="MeetingParticipents" EntitySet="MeetingParticipents" />
+            <End Role="Participators" EntitySet="Participators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participators_Meetings" Association="Self.FK_Participators_Meetings">
+            <End Role="Meetings" EntitySet="Meetings" />
+            <End Role="Participators" EntitySet="Participators" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -120,7 +150,16 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
             <End Role="Meetings" EntitySet="Meetings" />
             <End Role="MeetingSubjects" EntitySet="MeetingSubjects" />
           </AssociationSet>
+          <EntitySet Name="Participators" EntityType="MoshanirMeetingModel.Participators" />
+          <AssociationSet Name="FK_Participators_Meetings" Association="MoshanirMeetingModel.FK_Participators_Meetings">
+            <End Role="Meetings" EntitySet="Meetings" />
+            <End Role="Participators" EntitySet="Participators" />
+          </AssociationSet>
           <EntitySet Name="MeetingParticipents" EntityType="MoshanirMeetingModel.MeetingParticipents" />
+          <AssociationSet Name="FK_Participators_MeetingParticipents" Association="MoshanirMeetingModel.FK_Participators_MeetingParticipents">
+            <End Role="MeetingParticipents" EntitySet="MeetingParticipents" />
+            <End Role="Participators" EntitySet="Participators" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MeetingFiles">
           <Key>
@@ -149,6 +188,7 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
           <Property Name="MeetingDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="MeetingFiles" Relationship="MoshanirMeetingModel.FK_MeetingFiles_Meetings" FromRole="Meetings" ToRole="MeetingFiles" />
           <NavigationProperty Name="MeetingSubjects" Relationship="MoshanirMeetingModel.FK_MeetingSubjects_Meetings" FromRole="Meetings" ToRole="MeetingSubjects" />
+          <NavigationProperty Name="Participators" Relationship="MoshanirMeetingModel.FK_Participators_Meetings" FromRole="Meetings" ToRole="Participators" />
         </EntityType>
         <EntityType Name="MeetingSubjects">
           <Key>
@@ -187,18 +227,54 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Participators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeetingId" Type="Int32" />
+          <Property Name="ParticipentId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Meetings" Relationship="MoshanirMeetingModel.FK_Participators_Meetings" FromRole="Participators" ToRole="Meetings" />
+          <NavigationProperty Name="MeetingParticipents" Relationship="MoshanirMeetingModel.FK_Participators_MeetingParticipents" FromRole="Participators" ToRole="MeetingParticipents" />
+        </EntityType>
+        <Association Name="FK_Participators_Meetings">
+          <End Type="MoshanirMeetingModel.Meetings" Role="Meetings" Multiplicity="0..1" />
+          <End Type="MoshanirMeetingModel.Participators" Role="Participators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meetings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Participators">
+              <PropertyRef Name="MeetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="MeetingParticipents">
           <Key>
             <PropertyRef Name="Prsnum" />
           </Key>
-          <Property Name="Prsnum" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Prsnum" Type="Int32" Nullable="false" />
           <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NamKhanevadegi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VahedSazmani" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Moavenat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Noe_Sherkat" Type="Int32" />
           <Property Name="Noe_Eshteghal" Type="Int32" />
+          <NavigationProperty Name="Participators" Relationship="MoshanirMeetingModel.FK_Participators_MeetingParticipents" FromRole="MeetingParticipents" ToRole="Participators" />
         </EntityType>
+        <Association Name="FK_Participators_MeetingParticipents">
+          <End Type="MoshanirMeetingModel.MeetingParticipents" Role="MeetingParticipents" Multiplicity="0..1" />
+          <End Type="MoshanirMeetingModel.Participators" Role="Participators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingParticipents">
+              <PropertyRef Name="Prsnum" />
+            </Principal>
+            <Dependent Role="Participators">
+              <PropertyRef Name="ParticipentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -241,6 +317,16 @@ warning 6002: The table/view 'MoshanirMeeting.dbo.MeetingParticipents' does not 
                 <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
                 <ScalarProperty Name="Responsible" ColumnName="Responsible" />
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participators">
+            <EntityTypeMapping TypeName="MoshanirMeetingModel.Participators">
+              <MappingFragment StoreEntitySet="Participators">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParticipentId" ColumnName="ParticipentId" />
+                <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

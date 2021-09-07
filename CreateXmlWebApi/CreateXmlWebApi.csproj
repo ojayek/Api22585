@@ -350,7 +350,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Participators.cs">
+      <DependentUpon>Meeting.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\ParticipatorViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\TelAdmin.cs">
       <DependentUpon>Model.tt</DependentUpon>

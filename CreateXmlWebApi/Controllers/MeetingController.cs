@@ -198,16 +198,24 @@ namespace CreateXmlWebApi.Controllers
                         CreateOrUpdateFileInDB(afterInsert, httpRequest, file,createOrUpdate);
                     }
                 }
-              
+                var selectedParticipators = JsonConvert.DeserializeObject < List < ParticipatorViewModel >> (HttpContext.Current.Request.Form["SelectedParticipators"]);
+                
+
                 List<SubjectViewModel> lstSubjects = JsonConvert.DeserializeObject<List<SubjectViewModel>>
                                                                      (HttpContext.Current.Request.Form["lstSubjects"]);
                 var oldsubjects = db.MeetingSubjects.Where(o => o.MeetingId == updateMeeting.Id);
-                if(createOrUpdate ==false)
+                var oldparticipators = db.Participators.Where(o => o.MeetingId == updateMeeting.Id);
+                if (createOrUpdate ==false)//means update
                 {
                     foreach (var item in oldsubjects)
                     {
                         db.MeetingSubjects.Remove(item);
                        
+                    }
+                    foreach (var item in oldparticipators)
+                    {
+                        db.Participators.Remove(item);
+
                     }
                     db.SaveChanges();
                 }
@@ -216,9 +224,24 @@ namespace CreateXmlWebApi.Controllers
                 {
                     CreateSubjectInDB(afterInsert, item);
                 }
+                foreach (var item in selectedParticipators)
+                {
+                    CreateParticipatorInDB(afterInsert, item);
+                }
             }
             return afterInsert.Id;
         }
+        private void CreateParticipatorInDB(Meetings afterInsert, ParticipatorViewModel item)
+        {
+
+            var newParticipator = new Participators();
+            newParticipator.MeetingId = afterInsert.Id;
+            newParticipator.ParticipentId = item.Prsnum;
+            
+            db.Participators.Add(newParticipator);
+            db.SaveChanges();
+        }
+
 
         private void CreateSubjectInDB(Meetings afterInsert, SubjectViewModel item)
         {

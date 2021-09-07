@@ -10,7 +10,10 @@
         <EntityTypeShape EntityType="MoshanirMeetingModel.MeetingSubjects" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="MoshanirMeetingModel.FK_MeetingFiles_Meetings" />
         <AssociationConnector Association="MoshanirMeetingModel.FK_MeetingSubjects_Meetings" />
-        <EntityTypeShape EntityType="MoshanirMeetingModel.MeetingParticipents" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MoshanirMeetingModel.Participators" Width="1.5" PointX="7.625" PointY="2.125" />
+        <AssociationConnector Association="MoshanirMeetingModel.FK_Participators_Meetings" />
+        <EntityTypeShape EntityType="MoshanirMeetingModel.MeetingParticipents" Width="1.5" PointX="5.25" PointY="0.875" />
+        <AssociationConnector Association="MoshanirMeetingModel.FK_Participators_MeetingParticipents" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

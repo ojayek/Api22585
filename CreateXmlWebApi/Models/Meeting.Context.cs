@@ -28,6 +28,7 @@ namespace CreateXmlWebApi.Models
         public virtual DbSet<MeetingFiles> MeetingFiles { get; set; }
         public virtual DbSet<Meetings> Meetings { get; set; }
         public virtual DbSet<MeetingSubjects> MeetingSubjects { get; set; }
+        public virtual DbSet<Participators> Participators { get; set; }
         public virtual DbSet<MeetingParticipents> MeetingParticipents { get; set; }
     }
 }

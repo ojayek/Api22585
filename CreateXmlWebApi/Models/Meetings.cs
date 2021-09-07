@@ -19,6 +19,7 @@ namespace CreateXmlWebApi.Models
         {
             this.MeetingFiles = new HashSet<MeetingFiles>();
             this.MeetingSubjects = new HashSet<MeetingSubjects>();
+            this.Participators = new HashSet<Participators>();
         }
     
         public int Id { get; set; }
@@ -34,5 +35,7 @@ namespace CreateXmlWebApi.Models
         public virtual ICollection<MeetingFiles> MeetingFiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingSubjects> MeetingSubjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participators> Participators { get; set; }
     }
 }

@@ -14,12 +14,21 @@ namespace CreateXmlWebApi.Models
     
     public partial class MeetingParticipents
     {
-        public decimal Prsnum { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MeetingParticipents()
+        {
+            this.Participators = new HashSet<Participators>();
+        }
+    
+        public int Prsnum { get; set; }
         public string Nam { get; set; }
         public string NamKhanevadegi { get; set; }
         public string VahedSazmani { get; set; }
         public string Moavenat { get; set; }
         public Nullable<int> Noe_Sherkat { get; set; }
         public Nullable<int> Noe_Eshteghal { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participators> Participators { get; set; }
     }
 }
