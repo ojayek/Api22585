@@ -132,6 +132,7 @@ namespace CreateXmlWebApi.Controllers
         public IEnumerable<MeetingData> GetMeetingById(int Id)
         {
             var data = db.Meetings.Where(o => o.Id == Id).ToList();
+            var participatorData = db.Participators.Where(o => o.MeetingId == Id);
             var lstContacts = new List<MeetingData>();
 
             foreach (var item in data)
@@ -165,6 +166,12 @@ namespace CreateXmlWebApi.Controllers
                     }
                     lstContacts.Add(prsdata);
                 }
+                var participatorsFullProp = from p in db.Participators
+                                            join mp in db.MeetingParticipents
+                                            on p.ParticipentId equals mp.Prsnum
+                                            where p.MeetingId == Id
+                                            select new ParticipatorSelect{ value = mp.Prsnum, label = mp.Nam + "-" + mp.NamKhanevadegi };
+                prsdata.lstParticipators = participatorsFullProp.ToList();
             }
             return lstContacts;
         }

@@ -17,11 +17,18 @@ namespace CreateXmlWebApi.Models
         public DateTime MeetingDate { get; set; }
         public string MeetingDateStr { get; set; }
         public List<MeetingSubject> lstSubjects { get; set; }
+        public List<ParticipatorSelect> lstParticipators { get; set; }
 
 
 
     }
+    public class ParticipatorSelect
+    {
+        public int value { get; set; }
+        
+        public String label { get; set; }
 
+    }
     public class MeetingSubject
     {
         public int Id { get; set; }
