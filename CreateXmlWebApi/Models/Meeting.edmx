@@ -28,6 +28,8 @@
           <Property Name="Moavenat" Type="varchar" MaxLength="50" />
           <Property Name="Noe_Sherkat" Type="int" />
           <Property Name="Noe_Eshteghal" Type="int" />
+          <Property Name="MobileNumber" Type="int" />
+          <Property Name="Email" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Meetings">
           <Key>
@@ -262,6 +264,8 @@
           <Property Name="Noe_Sherkat" Type="Int32" />
           <Property Name="Noe_Eshteghal" Type="Int32" />
           <NavigationProperty Name="Participators" Relationship="MoshanirMeetingModel.FK_Participators_MeetingParticipents" FromRole="MeetingParticipents" ToRole="Participators" />
+          <Property Name="MobileNumber" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Participators_MeetingParticipents">
           <End Type="MoshanirMeetingModel.MeetingParticipents" Role="MeetingParticipents" Multiplicity="0..1" />
@@ -334,6 +338,8 @@
           <EntitySetMapping Name="MeetingParticipents">
             <EntityTypeMapping TypeName="MoshanirMeetingModel.MeetingParticipents">
               <MappingFragment StoreEntitySet="MeetingParticipents">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="Noe_Eshteghal" ColumnName="Noe_Eshteghal" />
                 <ScalarProperty Name="Noe_Sherkat" ColumnName="Noe_Sherkat" />
                 <ScalarProperty Name="Moavenat" ColumnName="Moavenat" />
