@@ -1,0 +1,1599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TotalNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HealthContracts">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContractNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Contractor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContractDateAsOf" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ContractDateTill" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ContractType" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HealthRecipeKind">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecipeDesc" Type="char" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HealthRecipeProperties">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KindID" Type="uniqueidentifier" />
+          <Property Name="DoctorId" Type="char" MaxLength="5" />
+          <Property Name="MaxMoney4Pay" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MinMoney4Pay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ContractId" Type="uniqueidentifier" />
+          <Property Name="Franshiz" Type="int" />
+          <Property Name="Kardex" Type="bit" />
+          <Property Name="ChandNafar" Type="int" />
+        </EntityType>
+        <EntityType Name="HealthShoParBach">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Mah" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MahBachNo" Type="int" Nullable="false" />
+          <Property Name="ShomareParvande" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ToBimeAvalie" Type="bit" Nullable="false" />
+          <Property Name="TobimeNahaee" Type="bit" Nullable="false" />
+          <Property Name="VaziatBaste" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HealthVisit">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="RadifVorood" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BachId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PersonelId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PatientId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecipePropertiesId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecipeDate" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Tarikh" Type="char" MaxLength="10" />
+          <Property Name="RecipeMoney" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ApprovedDamegMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="OutofContractMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Franshiz" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ApprovedMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="AddedMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DeletedMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="FinalMoney4Pay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PgNumBach" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Prs_Aelemandi">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MasterObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PrsNum" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Radif" Type="int" />
+          <Property Name="Nam" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShomareShenasNameh" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamPedar" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mazhab" Type="int" />
+          <Property Name="Din" Type="int" />
+          <Property Name="MahalSodorID" Type="uniqueidentifier" />
+          <Property Name="MahelTavalotID" Type="uniqueidentifier" />
+          <Property Name="Tarikh_Tavalot" Type="nvarchar" MaxLength="10" />
+          <Property Name="Tarikh_Azdevaj" Type="nvarchar" MaxLength="10" />
+          <Property Name="Shoghl" Type="nvarchar" MaxLength="50" />
+          <Property Name="MahelKar" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressMahalKar" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarikh_Talagh" Type="nvarchar" MaxLength="10" />
+          <Property Name="Tarikh_Fot" Type="nvarchar" MaxLength="10" />
+          <Property Name="Nesbat" Type="int" />
+          <Property Name="Tahttakafol" Type="bit" />
+          <Property Name="BimehShodehYaNashode" Type="bit" />
+          <Property Name="GradID" Type="uniqueidentifier" />
+          <Property Name="Tarikh_Bimeh" Type="nvarchar" MaxLength="10" />
+          <Property Name="Tarikh_AraeeMadarek" Type="nvarchar" MaxLength="10" />
+          <Property Name="Radif_Darman" Type="int" />
+          <Property Name="CodeMeli" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Prs_Personel">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ShomareEstekhdam" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="Prsnum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CardNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShomareShenasname" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamPedar" Type="nvarchar" MaxLength="50" />
+          <Property Name="TarikhTavalod" Type="nvarchar" MaxLength="10" />
+          <Property Name="MahalTavalodID" Type="uniqueidentifier" />
+          <Property Name="MahalSodourID" Type="uniqueidentifier" />
+          <Property Name="Jensiat" Type="int" />
+          <Property Name="Tabeiet" Type="nvarchar" MaxLength="50" />
+          <Property Name="VaziatTaahol" Type="int" />
+          <Property Name="Din" Type="int" />
+          <Property Name="Mazhab" Type="int" />
+          <Property Name="KodMeli" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShomarehBimeh" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoeBimeh" Type="int" />
+          <Property Name="NamLatin" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegiLatin" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoeEstekhdam" Type="int" />
+          <Property Name="TarikhEstekhdam" Type="nvarchar" MaxLength="10" />
+          <Property Name="VaziatMaskan" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressEzterari" Type="nvarchar" MaxLength="255" />
+          <Property Name="TelephoneEzterari" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamRabet" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoeEshteghal" Type="int" />
+          <Property Name="NoeGhateRabeteh" Type="int" />
+          <Property Name="TarikhGhateRabeteh" Type="nvarchar" MaxLength="10" />
+          <Property Name="Mamor" Type="nvarchar" MaxLength="10" />
+          <Property Name="Tarikh_Shoroe_Mamoriat" Type="nvarchar" MaxLength="10" />
+          <Property Name="Tarikh_Khatemeh_Mamoriat" Type="nvarchar" MaxLength="10" />
+          <Property Name="ModatMamoriat" Type="nvarchar" MaxLength="10" />
+          <Property Name="VazeyatPezeshki" Type="int" />
+          <Property Name="GorohKhoni" Type="int" />
+          <Property Name="Mahdodiyet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Jazb" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SakhtiKar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Alemandi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Olad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TedadFarzandVajedHaghOlad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MazayeShoghl" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Sarparasti" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Mantagheh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SehGaneh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Takhasos" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MohitKar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TashilatZendegi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Jazb" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hadeaghal_Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Tatbigh3Gane" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Sayer_Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FogholAdeMahalKhedmat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="HaghMaskan" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BadiAbVaHava" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KharoBar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FogholadehShoghl" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SayerMazaya" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VaziatJesmani" Type="int" />
+          <Property Name="NoeNaghseOzv" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaghfSaat" Type="int" />
+          <Property Name="MahdoodiathaiPezeshki" Type="nvarchar" MaxLength="250" />
+          <Property Name="shift" Type="int" />
+          <Property Name="Noe_Sherkat" Type="int" />
+          <Property Name="VaziatNezamVazifeh" Type="int" />
+          <Property Name="NumBuild" Type="int" />
+          <Property Name="SaatKarKharej" Type="int" />
+          <Property Name="EllateGhateRabeteh" Type="int" />
+          <Property Name="TozihatHoghogh" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TotalNew.dbo.HealthRecipeView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HealthRecipeView">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="RecipeDesc" />
+            <PropertyRef Name="DoctorDesc" />
+            <PropertyRef Name="MaxMoney4Pay" />
+            <PropertyRef Name="ContractNo" />
+            <PropertyRef Name="ContractDateAsOf" />
+            <PropertyRef Name="ContractDateTill" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecipeDesc" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Kardex" Type="bit" />
+          <Property Name="ChandNafar" Type="int" />
+          <Property Name="DoctorDesc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RKD" Type="varchar" MaxLength="36" />
+          <Property Name="KindID" Type="uniqueidentifier" />
+          <Property Name="DoctorId" Type="char" MaxLength="5" />
+          <Property Name="Franshiz" Type="int" />
+          <Property Name="MinMoney4Pay" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="MaxMoney4Pay" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ContractId" Type="uniqueidentifier" />
+          <Property Name="ContractNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ContractDateAsOf" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ContractDateTill" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TotalNew.dbo.HealthVisitForWeb' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HealthVisitForWeb">
+          <Key>
+            <PropertyRef Name="Mah" />
+            <PropertyRef Name="MahBachNo" />
+            <PropertyRef Name="RadifVorood" />
+            <PropertyRef Name="RecipeDesc" />
+            <PropertyRef Name="DoctorDesc" />
+            <PropertyRef Name="RecipeDate" />
+            <PropertyRef Name="مبلغ نسخه" />
+            <PropertyRef Name="ContractNo" />
+            <PropertyRef Name="VaziatBaste" />
+            <PropertyRef Name="TobimeNahaee" />
+            <PropertyRef Name="ToBimeAvalie" />
+            <PropertyRef Name="ShomareParvande" />
+            <PropertyRef Name="ContractDateAsOf" />
+          </Key>
+          <Property Name="Prsnum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mah" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MahBachNo" Type="int" Nullable="false" />
+          <Property Name="RadifVorood" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RecipeDesc" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Kardex" Type="bit" />
+          <Property Name="ChandNafar" Type="int" />
+          <Property Name="DoctorDesc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RKD" Type="varchar" MaxLength="36" />
+          <Property Name="RecipeDate" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="مبلغ نسخه" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="مبلغ تایید شده" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="مبلغ غیر تعهد" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="فرانشیز" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="مبلغ تایید" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="مبلغ اضافه شده" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="مبلغ کسر شده" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="مبلغ نهایی" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Vazeyat" Type="varchar" MaxLength="12" />
+          <Property Name="nesbat" Type="varchar" MaxLength="5" />
+          <Property Name="ContractNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="NamVanesbatBimar" Type="nvarchar" MaxLength="107" />
+          <Property Name="NamBimar" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamkhanevadegiBimar" Type="nvarchar" MaxLength="50" />
+          <Property Name="VaziatBaste" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TobimeNahaee" Type="bit" Nullable="false" />
+          <Property Name="ToBimeAvalie" Type="bit" Nullable="false" />
+          <Property Name="ShomareParvande" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ContractDateAsOf" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TotalNew.dbo.HealthVisitView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HealthVisitView">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="TarikhErsalBeBime" />
+            <PropertyRef Name="ShomareBasteErsalBeBime" />
+            <PropertyRef Name="RadifVorood" />
+            <PropertyRef Name="Tarikh" />
+            <PropertyRef Name="ppppp" />
+            <PropertyRef Name="iiiiii" />
+            <PropertyRef Name="Khesarat" />
+            <PropertyRef Name="ContractNo" />
+          </Key>
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Prsnum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegi" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamBimar" Type="nvarchar" MaxLength="101" />
+          <Property Name="Nesbat" Type="varchar" MaxLength="5" />
+          <Property Name="ShVaziatBaste" Type="varchar" MaxLength="12" />
+          <Property Name="TarikhErsalBeBime" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ShomareBasteErsalBeBime" Type="int" Nullable="false" />
+          <Property Name="RadifVorood" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Tarikh" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ppppp" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="iiiiii" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SharhDarman" Type="varchar" MaxLength="36" />
+          <Property Name="Khesarat" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Taeed" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GairTaahod" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Franshiz" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Darkhasty" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="AddedMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DeletedMoney" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="pardakhti" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Proj_Code" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Proj_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContractNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Radif_Darman" Type="int" />
+          <Property Name="CodeMeli" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="102" />
+          <Property Name="KodMeli" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TotalNew.dbo.Prs_GeneralView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Prs_GeneralView">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Prsnum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CardNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TarikhEstekhdam" Type="nvarchar" MaxLength="10" />
+          <Property Name="NoeEstekhdam" Type="int" />
+          <Property Name="ShomareShenasname" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamPedar" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Sarparasti" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Mantagheh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TarikhTavalod" Type="nvarchar" MaxLength="10" />
+          <Property Name="Jazb" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SakhtiKar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Alemandi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Olad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TedadFarzandVajedHaghOlad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MazayeShoghl" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SehGaneh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Jazb" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Sayer_Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FogholAdeMahalKhedmat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hadeaghal_Hoghogh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MohitKar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Tatbigh3Gane" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TashilatZendegi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="HaghMaskan" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BadiAbVaHava" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KharoBar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FogholadehShoghl" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SayerMazaya" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="shift" Type="int" />
+          <Property Name="Khiyabaan" Type="varchar" MaxLength="255" />
+          <Property Name="TelPhone" Type="char" MaxLength="50" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="desc_grad" Type="nvarchar" MaxLength="25" />
+          <Property Name="Takhasos" Type="nvarchar" MaxLength="50" />
+          <Property Name="TarikhAkhz" Type="nvarchar" MaxLength="10" />
+          <Property Name="NameDaneshGah" Type="char" MaxLength="50" />
+          <Property Name="NameReshteh" Type="char" MaxLength="255" />
+          <Property Name="Gerayeshtahsili" Type="varchar" MaxLength="50" />
+          <Property Name="MahalKar" Type="varchar" MaxLength="200" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Tarikh_Shoro" Type="char" MaxLength="10" />
+          <Property Name="Tarikh_Khatemeh" Type="char" MaxLength="10" />
+          <Property Name="Moddat" Type="nchar" MaxLength="10" />
+          <Property Name="Proj_Code" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Proj_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sharh_Onvan" Type="nvarchar" MaxLength="700" />
+          <Property Name="Kod_Onvan" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Tarikh_ShoroKarDakhelSherkat" Type="nvarchar" MaxLength="10" />
+          <Property Name="Tarikh_KhatemehKarDakhelSherkat" Type="nvarchar" MaxLength="10" />
+          <Property Name="Modat" Type="nvarchar" MaxLength="10" />
+          <Property Name="Emtiaz_Fard" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Emtiaz_Sholghl" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Rotbeh_Shoghl" Type="int" />
+          <Property Name="Rotbeh_Takhsisi" Type="int" />
+          <Property Name="Noe_Eshteghal" Type="int" />
+          <Property Name="Desc_Shift" Type="nvarchar" MaxLength="20" />
+          <Property Name="Desc_Noe_EstekhDam" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAhalTavalod" Type="nvarchar" MaxLength="50" />
+          <Property Name="MahalSodoor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desc_Jensiat" Type="nvarchar" MaxLength="3" />
+          <Property Name="Moavenat" Type="varchar" MaxLength="50" />
+          <Property Name="ShomarehBimeh" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamLatin" Type="nvarchar" MaxLength="50" />
+          <Property Name="NamKhanevadegiLatin" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShomareEstekhdam" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="AddressEzterari" Type="nvarchar" MaxLength="255" />
+          <Property Name="TelephoneEzterari" Type="nvarchar" MaxLength="50" />
+          <Property Name="GorohKhoni" Type="int" />
+          <Property Name="Noe_Sherkat" Type="int" />
+          <Property Name="VaziatTaahol" Type="int" />
+          <Property Name="KodMeli" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaghfSaat" Type="int" />
+          <Property Name="VaziatJesmani" Type="int" />
+          <Property Name="NoeBimeh" Type="int" />
+          <Property Name="NoeNaghseOzv" Type="nvarchar" MaxLength="50" />
+          <Property Name="MahdoodiathaiPezeshki" Type="nvarchar" MaxLength="250" />
+          <Property Name="HaghTakhasos" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NoeZaban" Type="int" />
+          <Property Name="MizanKhandan" Type="int" />
+          <Property Name="MizanNeveshTan" Type="int" />
+          <Property Name="MizanMokalemeh" Type="int" />
+          <Property Name="Din" Type="int" />
+          <Property Name="Mazhab" Type="int" />
+          <Property Name="VaziatNezamVazifeh" Type="int" />
+          <Property Name="Tabaghe" Type="nvarchar" MaxLength="5" />
+          <Property Name="Cd_section" Type="nvarchar" MaxLength="10" />
+          <Property Name="Section_Cource" Type="nvarchar" MaxLength="50" />
+          <Property Name="Work_Num" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Code_Grad" Type="smallint" />
+          <Property Name="Nezam" Type="bit" />
+          <Property Name="TYPE_ONVAN" Type="int" />
+          <Property Name="NoeGhateRabeteh" Type="int" />
+          <Property Name="TarikhGhateRabeteh" Type="nvarchar" MaxLength="10" />
+          <Property Name="ShomarePostSazmani" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumBuild" Type="int" />
+          <Property Name="SaatKarKharej" Type="int" />
+          <Property Name="CodPosty" Type="varchar" MaxLength="50" />
+          <Property Name="NamRabet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="char" MaxLength="50" />
+          <Property Name="Desc_EllatGhateRabeteh" Type="nvarchar" MaxLength="50" />
+          <Property Name="TozihatHoghogh" Type="nvarchar" MaxLength="250" />
+          <Property Name="MahalAkhzMadrak" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarikh_Shoroe_Mamoriat" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_HealthRecipeProperties_HealthContracts">
+          <End Role="HealthContracts" Type="Self.HealthContracts" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HealthRecipeProperties" Type="Self.HealthRecipeProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthContracts">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="HealthRecipeProperties">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthRecipeProperties_HealthRecipeKind">
+          <End Role="HealthRecipeKind" Type="Self.HealthRecipeKind" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HealthRecipeProperties" Type="Self.HealthRecipeProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthRecipeKind">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="HealthRecipeProperties">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prs_Aelemandi_Prs_PersonelBack">
+          <End Role="Prs_Personel" Type="Self.Prs_Personel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Prs_Aelemandi" Type="Self.Prs_Aelemandi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prs_Personel">
+              <PropertyRef Name="ObjectID" />
+            </Principal>
+            <Dependent Role="Prs_Aelemandi">
+              <PropertyRef Name="MasterObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TotalNewModelStoreContainer">
+          <EntitySet Name="HealthContracts" EntityType="Self.HealthContracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthRecipeKind" EntityType="Self.HealthRecipeKind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthRecipeProperties" EntityType="Self.HealthRecipeProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthShoParBach" EntityType="Self.HealthShoParBach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthVisit" EntityType="Self.HealthVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prs_Aelemandi" EntityType="Self.Prs_Aelemandi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prs_Personel" EntityType="Self.Prs_Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthRecipeView" EntityType="Self.HealthRecipeView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HealthRecipeView].[ObjectId] AS [ObjectId], 
+    [HealthRecipeView].[RecipeDesc] AS [RecipeDesc], 
+    [HealthRecipeView].[Kardex] AS [Kardex], 
+    [HealthRecipeView].[ChandNafar] AS [ChandNafar], 
+    [HealthRecipeView].[DoctorDesc] AS [DoctorDesc], 
+    [HealthRecipeView].[RKD] AS [RKD], 
+    [HealthRecipeView].[KindID] AS [KindID], 
+    [HealthRecipeView].[DoctorId] AS [DoctorId], 
+    [HealthRecipeView].[Franshiz] AS [Franshiz], 
+    [HealthRecipeView].[MinMoney4Pay] AS [MinMoney4Pay], 
+    [HealthRecipeView].[MaxMoney4Pay] AS [MaxMoney4Pay], 
+    [HealthRecipeView].[ContractId] AS [ContractId], 
+    [HealthRecipeView].[ContractNo] AS [ContractNo], 
+    [HealthRecipeView].[ContractDateAsOf] AS [ContractDateAsOf], 
+    [HealthRecipeView].[ContractDateTill] AS [ContractDateTill]
+    FROM [dbo].[HealthRecipeView] AS [HealthRecipeView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HealthVisitForWeb" EntityType="Self.HealthVisitForWeb" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HealthVisitForWeb].[Prsnum] AS [Prsnum], 
+    [HealthVisitForWeb].[Nam] AS [Nam], 
+    [HealthVisitForWeb].[NamKhanevadegi] AS [NamKhanevadegi], 
+    [HealthVisitForWeb].[Mah] AS [Mah], 
+    [HealthVisitForWeb].[MahBachNo] AS [MahBachNo], 
+    [HealthVisitForWeb].[RadifVorood] AS [RadifVorood], 
+    [HealthVisitForWeb].[RecipeDesc] AS [RecipeDesc], 
+    [HealthVisitForWeb].[Kardex] AS [Kardex], 
+    [HealthVisitForWeb].[ChandNafar] AS [ChandNafar], 
+    [HealthVisitForWeb].[DoctorDesc] AS [DoctorDesc], 
+    [HealthVisitForWeb].[RKD] AS [RKD], 
+    [HealthVisitForWeb].[RecipeDate] AS [RecipeDate], 
+    [HealthVisitForWeb].[مبلغ نسخه] AS [مبلغ نسخه], 
+    [HealthVisitForWeb].[مبلغ تایید شده] AS [مبلغ تایید شده], 
+    [HealthVisitForWeb].[مبلغ غیر تعهد] AS [مبلغ غیر تعهد], 
+    [HealthVisitForWeb].[فرانشیز] AS [فرانشیز], 
+    [HealthVisitForWeb].[مبلغ تایید] AS [مبلغ تایید], 
+    [HealthVisitForWeb].[مبلغ اضافه شده] AS [مبلغ اضافه شده], 
+    [HealthVisitForWeb].[مبلغ کسر شده] AS [مبلغ کسر شده], 
+    [HealthVisitForWeb].[مبلغ نهایی] AS [مبلغ نهایی], 
+    [HealthVisitForWeb].[Vazeyat] AS [Vazeyat], 
+    [HealthVisitForWeb].[nesbat] AS [nesbat], 
+    [HealthVisitForWeb].[ContractNo] AS [ContractNo], 
+    [HealthVisitForWeb].[NamVanesbatBimar] AS [NamVanesbatBimar], 
+    [HealthVisitForWeb].[NamBimar] AS [NamBimar], 
+    [HealthVisitForWeb].[NamkhanevadegiBimar] AS [NamkhanevadegiBimar], 
+    [HealthVisitForWeb].[VaziatBaste] AS [VaziatBaste], 
+    [HealthVisitForWeb].[TobimeNahaee] AS [TobimeNahaee], 
+    [HealthVisitForWeb].[ToBimeAvalie] AS [ToBimeAvalie], 
+    [HealthVisitForWeb].[ShomareParvande] AS [ShomareParvande], 
+    [HealthVisitForWeb].[ContractDateAsOf] AS [ContractDateAsOf]
+    FROM [dbo].[HealthVisitForWeb] AS [HealthVisitForWeb]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HealthVisitView" EntityType="Self.HealthVisitView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HealthVisitView].[ObjectId] AS [ObjectId], 
+    [HealthVisitView].[Prsnum] AS [Prsnum], 
+    [HealthVisitView].[Nam] AS [Nam], 
+    [HealthVisitView].[NamKhanevadegi] AS [NamKhanevadegi], 
+    [HealthVisitView].[NamBimar] AS [NamBimar], 
+    [HealthVisitView].[Nesbat] AS [Nesbat], 
+    [HealthVisitView].[ShVaziatBaste] AS [ShVaziatBaste], 
+    [HealthVisitView].[TarikhErsalBeBime] AS [TarikhErsalBeBime], 
+    [HealthVisitView].[ShomareBasteErsalBeBime] AS [ShomareBasteErsalBeBime], 
+    [HealthVisitView].[RadifVorood] AS [RadifVorood], 
+    [HealthVisitView].[Tarikh] AS [Tarikh], 
+    [HealthVisitView].[ppppp] AS [ppppp], 
+    [HealthVisitView].[iiiiii] AS [iiiiii], 
+    [HealthVisitView].[SharhDarman] AS [SharhDarman], 
+    [HealthVisitView].[Khesarat] AS [Khesarat], 
+    [HealthVisitView].[Taeed] AS [Taeed], 
+    [HealthVisitView].[GairTaahod] AS [GairTaahod], 
+    [HealthVisitView].[Franshiz] AS [Franshiz], 
+    [HealthVisitView].[Darkhasty] AS [Darkhasty], 
+    [HealthVisitView].[AddedMoney] AS [AddedMoney], 
+    [HealthVisitView].[DeletedMoney] AS [DeletedMoney], 
+    [HealthVisitView].[pardakhti] AS [pardakhti], 
+    [HealthVisitView].[Proj_Code] AS [Proj_Code], 
+    [HealthVisitView].[Proj_Name] AS [Proj_Name], 
+    [HealthVisitView].[ContractNo] AS [ContractNo], 
+    [HealthVisitView].[Radif_Darman] AS [Radif_Darman], 
+    [HealthVisitView].[CodeMeli] AS [CodeMeli], 
+    [HealthVisitView].[name] AS [name], 
+    [HealthVisitView].[KodMeli] AS [KodMeli]
+    FROM [dbo].[HealthVisitView] AS [HealthVisitView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Prs_GeneralView" EntityType="Self.Prs_GeneralView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prs_GeneralView].[ObjectID] AS [ObjectID], 
+    [Prs_GeneralView].[Prsnum] AS [Prsnum], 
+    [Prs_GeneralView].[CardNo] AS [CardNo], 
+    [Prs_GeneralView].[Nam] AS [Nam], 
+    [Prs_GeneralView].[NamKhanevadegi] AS [NamKhanevadegi], 
+    [Prs_GeneralView].[TarikhEstekhdam] AS [TarikhEstekhdam], 
+    [Prs_GeneralView].[NoeEstekhdam] AS [NoeEstekhdam], 
+    [Prs_GeneralView].[ShomareShenasname] AS [ShomareShenasname], 
+    [Prs_GeneralView].[NamPedar] AS [NamPedar], 
+    [Prs_GeneralView].[Hoghogh] AS [Hoghogh], 
+    [Prs_GeneralView].[Sarparasti] AS [Sarparasti], 
+    [Prs_GeneralView].[Mantagheh] AS [Mantagheh], 
+    [Prs_GeneralView].[TarikhTavalod] AS [TarikhTavalod], 
+    [Prs_GeneralView].[Jazb] AS [Jazb], 
+    [Prs_GeneralView].[SakhtiKar] AS [SakhtiKar], 
+    [Prs_GeneralView].[Alemandi] AS [Alemandi], 
+    [Prs_GeneralView].[Olad] AS [Olad], 
+    [Prs_GeneralView].[TedadFarzandVajedHaghOlad] AS [TedadFarzandVajedHaghOlad], 
+    [Prs_GeneralView].[MazayeShoghl] AS [MazayeShoghl], 
+    [Prs_GeneralView].[SehGaneh] AS [SehGaneh], 
+    [Prs_GeneralView].[TatBigh_Hoghogh] AS [TatBigh_Hoghogh], 
+    [Prs_GeneralView].[TatBigh_Jazb] AS [TatBigh_Jazb], 
+    [Prs_GeneralView].[Sayer_Hoghogh] AS [Sayer_Hoghogh], 
+    [Prs_GeneralView].[FogholAdeMahalKhedmat] AS [FogholAdeMahalKhedmat], 
+    [Prs_GeneralView].[TatBigh_Hadeaghal_Hoghogh] AS [TatBigh_Hadeaghal_Hoghogh], 
+    [Prs_GeneralView].[MohitKar] AS [MohitKar], 
+    [Prs_GeneralView].[Tatbigh3Gane] AS [Tatbigh3Gane], 
+    [Prs_GeneralView].[TashilatZendegi] AS [TashilatZendegi], 
+    [Prs_GeneralView].[HaghMaskan] AS [HaghMaskan], 
+    [Prs_GeneralView].[BadiAbVaHava] AS [BadiAbVaHava], 
+    [Prs_GeneralView].[KharoBar] AS [KharoBar], 
+    [Prs_GeneralView].[FogholadehShoghl] AS [FogholadehShoghl], 
+    [Prs_GeneralView].[SayerMazaya] AS [SayerMazaya], 
+    [Prs_GeneralView].[shift] AS [shift], 
+    [Prs_GeneralView].[Khiyabaan] AS [Khiyabaan], 
+    [Prs_GeneralView].[TelPhone] AS [TelPhone], 
+    [Prs_GeneralView].[CountryName] AS [CountryName], 
+    [Prs_GeneralView].[CityName] AS [CityName], 
+    [Prs_GeneralView].[desc_grad] AS [desc_grad], 
+    [Prs_GeneralView].[Takhasos] AS [Takhasos], 
+    [Prs_GeneralView].[TarikhAkhz] AS [TarikhAkhz], 
+    [Prs_GeneralView].[NameDaneshGah] AS [NameDaneshGah], 
+    [Prs_GeneralView].[NameReshteh] AS [NameReshteh], 
+    [Prs_GeneralView].[Gerayeshtahsili] AS [Gerayeshtahsili], 
+    [Prs_GeneralView].[MahalKar] AS [MahalKar], 
+    [Prs_GeneralView].[Address] AS [Address], 
+    [Prs_GeneralView].[Tarikh_Shoro] AS [Tarikh_Shoro], 
+    [Prs_GeneralView].[Tarikh_Khatemeh] AS [Tarikh_Khatemeh], 
+    [Prs_GeneralView].[Moddat] AS [Moddat], 
+    [Prs_GeneralView].[Proj_Code] AS [Proj_Code], 
+    [Prs_GeneralView].[Proj_Name] AS [Proj_Name], 
+    [Prs_GeneralView].[Name] AS [Name], 
+    [Prs_GeneralView].[Sharh_Onvan] AS [Sharh_Onvan], 
+    [Prs_GeneralView].[Kod_Onvan] AS [Kod_Onvan], 
+    [Prs_GeneralView].[Tarikh_ShoroKarDakhelSherkat] AS [Tarikh_ShoroKarDakhelSherkat], 
+    [Prs_GeneralView].[Tarikh_KhatemehKarDakhelSherkat] AS [Tarikh_KhatemehKarDakhelSherkat], 
+    [Prs_GeneralView].[Modat] AS [Modat], 
+    [Prs_GeneralView].[Emtiaz_Fard] AS [Emtiaz_Fard], 
+    [Prs_GeneralView].[Emtiaz_Sholghl] AS [Emtiaz_Sholghl], 
+    [Prs_GeneralView].[Rotbeh_Shoghl] AS [Rotbeh_Shoghl], 
+    [Prs_GeneralView].[Rotbeh_Takhsisi] AS [Rotbeh_Takhsisi], 
+    [Prs_GeneralView].[Noe_Eshteghal] AS [Noe_Eshteghal], 
+    [Prs_GeneralView].[Desc_Shift] AS [Desc_Shift], 
+    [Prs_GeneralView].[Desc_Noe_EstekhDam] AS [Desc_Noe_EstekhDam], 
+    [Prs_GeneralView].[MAhalTavalod] AS [MAhalTavalod], 
+    [Prs_GeneralView].[MahalSodoor] AS [MahalSodoor], 
+    [Prs_GeneralView].[Desc_Jensiat] AS [Desc_Jensiat], 
+    [Prs_GeneralView].[Moavenat] AS [Moavenat], 
+    [Prs_GeneralView].[ShomarehBimeh] AS [ShomarehBimeh], 
+    [Prs_GeneralView].[NamLatin] AS [NamLatin], 
+    [Prs_GeneralView].[NamKhanevadegiLatin] AS [NamKhanevadegiLatin], 
+    [Prs_GeneralView].[Email] AS [Email], 
+    [Prs_GeneralView].[ShomareEstekhdam] AS [ShomareEstekhdam], 
+    [Prs_GeneralView].[AddressEzterari] AS [AddressEzterari], 
+    [Prs_GeneralView].[TelephoneEzterari] AS [TelephoneEzterari], 
+    [Prs_GeneralView].[GorohKhoni] AS [GorohKhoni], 
+    [Prs_GeneralView].[Noe_Sherkat] AS [Noe_Sherkat], 
+    [Prs_GeneralView].[VaziatTaahol] AS [VaziatTaahol], 
+    [Prs_GeneralView].[KodMeli] AS [KodMeli], 
+    [Prs_GeneralView].[SaghfSaat] AS [SaghfSaat], 
+    [Prs_GeneralView].[VaziatJesmani] AS [VaziatJesmani], 
+    [Prs_GeneralView].[NoeBimeh] AS [NoeBimeh], 
+    [Prs_GeneralView].[NoeNaghseOzv] AS [NoeNaghseOzv], 
+    [Prs_GeneralView].[MahdoodiathaiPezeshki] AS [MahdoodiathaiPezeshki], 
+    [Prs_GeneralView].[HaghTakhasos] AS [HaghTakhasos], 
+    [Prs_GeneralView].[NoeZaban] AS [NoeZaban], 
+    [Prs_GeneralView].[MizanKhandan] AS [MizanKhandan], 
+    [Prs_GeneralView].[MizanNeveshTan] AS [MizanNeveshTan], 
+    [Prs_GeneralView].[MizanMokalemeh] AS [MizanMokalemeh], 
+    [Prs_GeneralView].[Din] AS [Din], 
+    [Prs_GeneralView].[Mazhab] AS [Mazhab], 
+    [Prs_GeneralView].[VaziatNezamVazifeh] AS [VaziatNezamVazifeh], 
+    [Prs_GeneralView].[Tabaghe] AS [Tabaghe], 
+    [Prs_GeneralView].[Cd_section] AS [Cd_section], 
+    [Prs_GeneralView].[Section_Cource] AS [Section_Cource], 
+    [Prs_GeneralView].[Work_Num] AS [Work_Num], 
+    [Prs_GeneralView].[Code_Grad] AS [Code_Grad], 
+    [Prs_GeneralView].[Nezam] AS [Nezam], 
+    [Prs_GeneralView].[TYPE_ONVAN] AS [TYPE_ONVAN], 
+    [Prs_GeneralView].[NoeGhateRabeteh] AS [NoeGhateRabeteh], 
+    [Prs_GeneralView].[TarikhGhateRabeteh] AS [TarikhGhateRabeteh], 
+    [Prs_GeneralView].[ShomarePostSazmani] AS [ShomarePostSazmani], 
+    [Prs_GeneralView].[NumBuild] AS [NumBuild], 
+    [Prs_GeneralView].[SaatKarKharej] AS [SaatKarKharej], 
+    [Prs_GeneralView].[CodPosty] AS [CodPosty], 
+    [Prs_GeneralView].[NamRabet] AS [NamRabet], 
+    [Prs_GeneralView].[Mobile] AS [Mobile], 
+    [Prs_GeneralView].[Desc_EllatGhateRabeteh] AS [Desc_EllatGhateRabeteh], 
+    [Prs_GeneralView].[TozihatHoghogh] AS [TozihatHoghogh], 
+    [Prs_GeneralView].[MahalAkhzMadrak] AS [MahalAkhzMadrak], 
+    [Prs_GeneralView].[Tarikh_Shoroe_Mamoriat] AS [Tarikh_Shoroe_Mamoriat]
+    FROM [dbo].[Prs_GeneralView] AS [Prs_GeneralView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_HealthRecipeProperties_HealthContracts" Association="Self.FK_HealthRecipeProperties_HealthContracts">
+            <End Role="HealthContracts" EntitySet="HealthContracts" />
+            <End Role="HealthRecipeProperties" EntitySet="HealthRecipeProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthRecipeProperties_HealthRecipeKind" Association="Self.FK_HealthRecipeProperties_HealthRecipeKind">
+            <End Role="HealthRecipeKind" EntitySet="HealthRecipeKind" />
+            <End Role="HealthRecipeProperties" EntitySet="HealthRecipeProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prs_Aelemandi_Prs_PersonelBack" Association="Self.FK_Prs_Aelemandi_Prs_PersonelBack">
+            <End Role="Prs_Personel" EntitySet="Prs_Personel" />
+            <End Role="Prs_Aelemandi" EntitySet="Prs_Aelemandi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TotalNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Prs_GeneralView">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Guid" Nullable="false" />
+          <Property Name="Prsnum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CardNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TarikhEstekhdam" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NoeEstekhdam" Type="Int32" />
+          <Property Name="ShomareShenasname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamPedar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Sarparasti" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mantagheh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TarikhTavalod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Jazb" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SakhtiKar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Alemandi" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Olad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TedadFarzandVajedHaghOlad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MazayeShoghl" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SehGaneh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Jazb" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Sayer_Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FogholAdeMahalKhedmat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hadeaghal_Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MohitKar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tatbigh3Gane" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TashilatZendegi" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="HaghMaskan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BadiAbVaHava" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KharoBar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FogholadehShoghl" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SayerMazaya" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="shift" Type="Int32" />
+          <Property Name="Khiyabaan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TelPhone" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="desc_grad" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Takhasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TarikhAkhz" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NameDaneshGah" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="NameReshteh" Type="String" MaxLength="255" FixedLength="true" Unicode="false" />
+          <Property Name="Gerayeshtahsili" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MahalKar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Tarikh_Shoro" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Tarikh_Khatemeh" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Moddat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Proj_Code" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Proj_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sharh_Onvan" Type="String" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Name="Kod_Onvan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tarikh_ShoroKarDakhelSherkat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_KhatemehKarDakhelSherkat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Modat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Emtiaz_Fard" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Emtiaz_Sholghl" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Rotbeh_Shoghl" Type="Int32" />
+          <Property Name="Rotbeh_Takhsisi" Type="Int32" />
+          <Property Name="Noe_Eshteghal" Type="Int32" />
+          <Property Name="Desc_Shift" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Desc_Noe_EstekhDam" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAhalTavalod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MahalSodoor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desc_Jensiat" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Moavenat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShomarehBimeh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamLatin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegiLatin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShomareEstekhdam" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="AddressEzterari" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneEzterari" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GorohKhoni" Type="Int32" />
+          <Property Name="Noe_Sherkat" Type="Int32" />
+          <Property Name="VaziatTaahol" Type="Int32" />
+          <Property Name="KodMeli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaghfSaat" Type="Int32" />
+          <Property Name="VaziatJesmani" Type="Int32" />
+          <Property Name="NoeBimeh" Type="Int32" />
+          <Property Name="NoeNaghseOzv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MahdoodiathaiPezeshki" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HaghTakhasos" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NoeZaban" Type="Int32" />
+          <Property Name="MizanKhandan" Type="Int32" />
+          <Property Name="MizanNeveshTan" Type="Int32" />
+          <Property Name="MizanMokalemeh" Type="Int32" />
+          <Property Name="Din" Type="Int32" />
+          <Property Name="Mazhab" Type="Int32" />
+          <Property Name="VaziatNezamVazifeh" Type="Int32" />
+          <Property Name="Tabaghe" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Cd_section" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Section_Cource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Work_Num" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Code_Grad" Type="Int16" />
+          <Property Name="Nezam" Type="Boolean" />
+          <Property Name="TYPE_ONVAN" Type="Int32" />
+          <Property Name="NoeGhateRabeteh" Type="Int32" />
+          <Property Name="TarikhGhateRabeteh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ShomarePostSazmani" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumBuild" Type="Int32" />
+          <Property Name="SaatKarKharej" Type="Int32" />
+          <Property Name="CodPosty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NamRabet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Desc_EllatGhateRabeteh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TozihatHoghogh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MahalAkhzMadrak" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_Shoroe_Mamoriat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DarmanConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prs_GeneralView" EntityType="Self.Prs_GeneralView" />
+          <EntitySet Name="HealthVisitViews" EntityType="TotalNewModel.HealthVisitView" />
+          <EntitySet Name="HealthContracts" EntityType="TotalNewModel.HealthContract" />
+          <EntitySet Name="Prs_Aelemandi" EntityType="TotalNewModel.Prs_Aelemandi" />
+          <EntitySet Name="HealthShoParBaches" EntityType="TotalNewModel.HealthShoParBach" />
+          <EntitySet Name="HealthRecipeViews" EntityType="TotalNewModel.HealthRecipeView" />
+          <EntitySet Name="HealthRecipeKinds" EntityType="TotalNewModel.HealthRecipeKind" />
+          <EntitySet Name="HealthRecipeProperties" EntityType="TotalNewModel.HealthRecipeProperty" />
+          <AssociationSet Name="FK_HealthRecipeProperties_HealthContracts" Association="TotalNewModel.FK_HealthRecipeProperties_HealthContracts">
+            <End Role="HealthContract" EntitySet="HealthContracts" />
+            <End Role="HealthRecipeProperty" EntitySet="HealthRecipeProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthRecipeProperties_HealthRecipeKind" Association="TotalNewModel.FK_HealthRecipeProperties_HealthRecipeKind">
+            <End Role="HealthRecipeKind" EntitySet="HealthRecipeKinds" />
+            <End Role="HealthRecipeProperty" EntitySet="HealthRecipeProperties" />
+          </AssociationSet>
+          <EntitySet Name="HealthVisitForWebs" EntityType="TotalNewModel.HealthVisitForWeb" />
+          <EntitySet Name="HealthVisits" EntityType="TotalNewModel.HealthVisit" />
+          <EntitySet Name="Prs_Personel" EntityType="TotalNewModel.Prs_Personel" />
+          <AssociationSet Name="FK_Prs_Aelemandi_Prs_PersonelBack" Association="TotalNewModel.FK_Prs_Aelemandi_Prs_PersonelBack">
+            <End Role="Prs_Personel" EntitySet="Prs_Personel" />
+            <End Role="Prs_Aelemandi" EntitySet="Prs_Aelemandi" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HealthVisitView">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="TarikhErsalBeBime" />
+            <PropertyRef Name="ShomareBasteErsalBeBime" />
+            <PropertyRef Name="RadifVorood" />
+            <PropertyRef Name="Tarikh" />
+            <PropertyRef Name="ppppp" />
+            <PropertyRef Name="iiiiii" />
+            <PropertyRef Name="Khesarat" />
+            <PropertyRef Name="ContractNo" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="Prsnum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamBimar" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="Nesbat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ShVaziatBaste" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="TarikhErsalBeBime" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ShomareBasteErsalBeBime" Type="Int32" Nullable="false" />
+          <Property Name="RadifVorood" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Tarikh" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ppppp" Type="Guid" Nullable="false" />
+          <Property Name="iiiiii" Type="Guid" Nullable="false" />
+          <Property Name="SharhDarman" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Khesarat" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Taeed" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GairTaahod" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Franshiz" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Darkhasty" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AddedMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DeletedMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="pardakhti" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Proj_Code" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Proj_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContractNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Radif_Darman" Type="Int32" />
+          <Property Name="CodeMeli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="102" FixedLength="false" Unicode="true" />
+          <Property Name="KodMeli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HealthContract">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="ContractNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Contractor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContractDateAsOf" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ContractDateTill" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ContractType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="HealthRecipeProperties" Relationship="TotalNewModel.FK_HealthRecipeProperties_HealthContracts" FromRole="HealthContract" ToRole="HealthRecipeProperty" />
+        </EntityType>
+        <EntityType Name="Prs_Aelemandi">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="MasterObjectId" Type="Guid" Nullable="false" />
+          <Property Name="PrsNum" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Radif" Type="Int32" />
+          <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShomareShenasNameh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamPedar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mazhab" Type="Int32" />
+          <Property Name="Din" Type="Int32" />
+          <Property Name="MahalSodorID" Type="Guid" />
+          <Property Name="MahelTavalotID" Type="Guid" />
+          <Property Name="Tarikh_Tavalot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_Azdevaj" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Shoghl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MahelKar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressMahalKar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_Talagh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_Fot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nesbat" Type="Int32" />
+          <Property Name="Tahttakafol" Type="Boolean" />
+          <Property Name="BimehShodehYaNashode" Type="Boolean" />
+          <Property Name="GradID" Type="Guid" />
+          <Property Name="Tarikh_Bimeh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_AraeeMadarek" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Radif_Darman" Type="Int32" />
+          <Property Name="CodeMeli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Prs_Personel" Relationship="TotalNewModel.FK_Prs_Aelemandi_Prs_PersonelBack" FromRole="Prs_Aelemandi" ToRole="Prs_Personel" />
+        </EntityType>
+        <EntityType Name="HealthShoParBach">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="Mah" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MahBachNo" Type="Int32" Nullable="false" />
+          <Property Name="ShomareParvande" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ToBimeAvalie" Type="Boolean" Nullable="false" />
+          <Property Name="TobimeNahaee" Type="Boolean" Nullable="false" />
+          <Property Name="VaziatBaste" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="HealthRecipeView">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+            <PropertyRef Name="RecipeDesc" />
+            <PropertyRef Name="DoctorDesc" />
+            <PropertyRef Name="MaxMoney4Pay" />
+            <PropertyRef Name="ContractNo" />
+            <PropertyRef Name="ContractDateAsOf" />
+            <PropertyRef Name="ContractDateTill" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="RecipeDesc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Kardex" Type="Boolean" />
+          <Property Name="ChandNafar" Type="Int32" />
+          <Property Name="DoctorDesc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RKD" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="KindID" Type="Guid" />
+          <Property Name="DoctorId" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Franshiz" Type="Int32" />
+          <Property Name="MinMoney4Pay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MaxMoney4Pay" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ContractId" Type="Guid" />
+          <Property Name="ContractNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="ContractDateAsOf" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ContractDateTill" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HealthRecipeKind">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="RecipeDesc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="HealthRecipeProperties" Relationship="TotalNewModel.FK_HealthRecipeProperties_HealthRecipeKind" FromRole="HealthRecipeKind" ToRole="HealthRecipeProperty" />
+        </EntityType>
+        <EntityType Name="HealthRecipeProperty">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="KindID" Type="Guid" />
+          <Property Name="DoctorId" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="MaxMoney4Pay" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MinMoney4Pay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ContractId" Type="Guid" />
+          <Property Name="Franshiz" Type="Int32" />
+          <Property Name="Kardex" Type="Boolean" />
+          <Property Name="ChandNafar" Type="Int32" />
+          <NavigationProperty Name="HealthContract" Relationship="TotalNewModel.FK_HealthRecipeProperties_HealthContracts" FromRole="HealthRecipeProperty" ToRole="HealthContract" />
+          <NavigationProperty Name="HealthRecipeKind" Relationship="TotalNewModel.FK_HealthRecipeProperties_HealthRecipeKind" FromRole="HealthRecipeProperty" ToRole="HealthRecipeKind" />
+        </EntityType>
+        <Association Name="FK_HealthRecipeProperties_HealthContracts">
+          <End Type="TotalNewModel.HealthContract" Role="HealthContract" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TotalNewModel.HealthRecipeProperty" Role="HealthRecipeProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthContract">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="HealthRecipeProperty">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthRecipeProperties_HealthRecipeKind">
+          <End Type="TotalNewModel.HealthRecipeKind" Role="HealthRecipeKind" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TotalNewModel.HealthRecipeProperty" Role="HealthRecipeProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthRecipeKind">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="HealthRecipeProperty">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HealthVisitForWeb">
+          <Key>
+            <PropertyRef Name="Mah" />
+            <PropertyRef Name="MahBachNo" />
+            <PropertyRef Name="RadifVorood" />
+            <PropertyRef Name="RecipeDesc" />
+            <PropertyRef Name="DoctorDesc" />
+            <PropertyRef Name="RecipeDate" />
+            <PropertyRef Name="مبلغ_نسخه" />
+            <PropertyRef Name="ContractNo" />
+            <PropertyRef Name="VaziatBaste" />
+            <PropertyRef Name="TobimeNahaee" />
+            <PropertyRef Name="ToBimeAvalie" />
+            <PropertyRef Name="ShomareParvande" />
+            <PropertyRef Name="ContractDateAsOf" />
+          </Key>
+          <Property Name="Prsnum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mah" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MahBachNo" Type="Int32" Nullable="false" />
+          <Property Name="RadifVorood" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="RecipeDesc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="Kardex" Type="Boolean" />
+          <Property Name="ChandNafar" Type="Int32" />
+          <Property Name="DoctorDesc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RKD" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="RecipeDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="مبلغ_نسخه" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="مبلغ_تایید_شده" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="مبلغ_غیر_تعهد" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="فرانشیز" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="مبلغ_تایید" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="مبلغ_اضافه_شده" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="مبلغ_کسر_شده" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="مبلغ_نهایی" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Vazeyat" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="nesbat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ContractNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="NamVanesbatBimar" Type="String" MaxLength="107" FixedLength="false" Unicode="true" />
+          <Property Name="NamBimar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamkhanevadegiBimar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaziatBaste" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TobimeNahaee" Type="Boolean" Nullable="false" />
+          <Property Name="ToBimeAvalie" Type="Boolean" Nullable="false" />
+          <Property Name="ShomareParvande" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ContractDateAsOf" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HealthVisit">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="RadifVorood" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BachId" Type="Guid" Nullable="false" />
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
+          <Property Name="PersonelId" Type="Guid" Nullable="false" />
+          <Property Name="PatientId" Type="Guid" Nullable="false" />
+          <Property Name="RecipePropertiesId" Type="Guid" Nullable="false" />
+          <Property Name="RecipeDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Tarikh" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="RecipeMoney" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ApprovedDamegMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OutofContractMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Franshiz" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ApprovedMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AddedMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DeletedMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FinalMoney4Pay" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PgNumBach" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Prs_Personel">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Guid" Nullable="false" />
+          <Property Name="ShomareEstekhdam" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Prsnum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CardNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShomareShenasname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamPedar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TarikhTavalod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MahalTavalodID" Type="Guid" />
+          <Property Name="MahalSodourID" Type="Guid" />
+          <Property Name="Jensiat" Type="Int32" />
+          <Property Name="Tabeiet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaziatTaahol" Type="Int32" />
+          <Property Name="Din" Type="Int32" />
+          <Property Name="Mazhab" Type="Int32" />
+          <Property Name="KodMeli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShomarehBimeh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoeBimeh" Type="Int32" />
+          <Property Name="NamLatin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamKhanevadegiLatin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoeEstekhdam" Type="Int32" />
+          <Property Name="TarikhEstekhdam" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VaziatMaskan" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressEzterari" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneEzterari" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamRabet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoeEshteghal" Type="Int32" />
+          <Property Name="NoeGhateRabeteh" Type="Int32" />
+          <Property Name="TarikhGhateRabeteh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Mamor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_Shoroe_Mamoriat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Tarikh_Khatemeh_Mamoriat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ModatMamoriat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VazeyatPezeshki" Type="Int32" />
+          <Property Name="GorohKhoni" Type="Int32" />
+          <Property Name="Mahdodiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Jazb" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SakhtiKar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Alemandi" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Olad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TedadFarzandVajedHaghOlad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MazayeShoghl" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Sarparasti" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mantagheh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SehGaneh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Takhasos" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MohitKar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TashilatZendegi" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Jazb" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TatBigh_Hadeaghal_Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tatbigh3Gane" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Sayer_Hoghogh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FogholAdeMahalKhedmat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="HaghMaskan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BadiAbVaHava" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KharoBar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FogholadehShoghl" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SayerMazaya" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VaziatJesmani" Type="Int32" />
+          <Property Name="NoeNaghseOzv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaghfSaat" Type="Int32" />
+          <Property Name="MahdoodiathaiPezeshki" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="shift" Type="Int32" />
+          <Property Name="Noe_Sherkat" Type="Int32" />
+          <Property Name="VaziatNezamVazifeh" Type="Int32" />
+          <Property Name="NumBuild" Type="Int32" />
+          <Property Name="SaatKarKharej" Type="Int32" />
+          <Property Name="EllateGhateRabeteh" Type="Int32" />
+          <Property Name="TozihatHoghogh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Prs_Aelemandi" Relationship="TotalNewModel.FK_Prs_Aelemandi_Prs_PersonelBack" FromRole="Prs_Personel" ToRole="Prs_Aelemandi" />
+        </EntityType>
+        <Association Name="FK_Prs_Aelemandi_Prs_PersonelBack">
+          <End Type="TotalNewModel.Prs_Personel" Role="Prs_Personel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TotalNewModel.Prs_Aelemandi" Role="Prs_Aelemandi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prs_Personel">
+              <PropertyRef Name="ObjectID" />
+            </Principal>
+            <Dependent Role="Prs_Aelemandi">
+              <PropertyRef Name="MasterObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TotalNewModelStoreContainer" CdmEntityContainer="DarmanConnection">
+          <EntitySetMapping Name="Prs_GeneralView">
+            <EntityTypeMapping TypeName="TotalNewModel.Prs_GeneralView">
+              <MappingFragment StoreEntitySet="Prs_GeneralView">
+                <ScalarProperty Name="Tarikh_Shoroe_Mamoriat" ColumnName="Tarikh_Shoroe_Mamoriat" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="Prsnum" ColumnName="Prsnum" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="NamKhanevadegi" ColumnName="NamKhanevadegi" />
+                <ScalarProperty Name="TarikhEstekhdam" ColumnName="TarikhEstekhdam" />
+                <ScalarProperty Name="NoeEstekhdam" ColumnName="NoeEstekhdam" />
+                <ScalarProperty Name="ShomareShenasname" ColumnName="ShomareShenasname" />
+                <ScalarProperty Name="NamPedar" ColumnName="NamPedar" />
+                <ScalarProperty Name="Hoghogh" ColumnName="Hoghogh" />
+                <ScalarProperty Name="Sarparasti" ColumnName="Sarparasti" />
+                <ScalarProperty Name="Mantagheh" ColumnName="Mantagheh" />
+                <ScalarProperty Name="TarikhTavalod" ColumnName="TarikhTavalod" />
+                <ScalarProperty Name="Jazb" ColumnName="Jazb" />
+                <ScalarProperty Name="SakhtiKar" ColumnName="SakhtiKar" />
+                <ScalarProperty Name="Alemandi" ColumnName="Alemandi" />
+                <ScalarProperty Name="Olad" ColumnName="Olad" />
+                <ScalarProperty Name="TedadFarzandVajedHaghOlad" ColumnName="TedadFarzandVajedHaghOlad" />
+                <ScalarProperty Name="MazayeShoghl" ColumnName="MazayeShoghl" />
+                <ScalarProperty Name="SehGaneh" ColumnName="SehGaneh" />
+                <ScalarProperty Name="TatBigh_Hoghogh" ColumnName="TatBigh_Hoghogh" />
+                <ScalarProperty Name="TatBigh_Jazb" ColumnName="TatBigh_Jazb" />
+                <ScalarProperty Name="Sayer_Hoghogh" ColumnName="Sayer_Hoghogh" />
+                <ScalarProperty Name="FogholAdeMahalKhedmat" ColumnName="FogholAdeMahalKhedmat" />
+                <ScalarProperty Name="TatBigh_Hadeaghal_Hoghogh" ColumnName="TatBigh_Hadeaghal_Hoghogh" />
+                <ScalarProperty Name="MohitKar" ColumnName="MohitKar" />
+                <ScalarProperty Name="Tatbigh3Gane" ColumnName="Tatbigh3Gane" />
+                <ScalarProperty Name="TashilatZendegi" ColumnName="TashilatZendegi" />
+                <ScalarProperty Name="HaghMaskan" ColumnName="HaghMaskan" />
+                <ScalarProperty Name="BadiAbVaHava" ColumnName="BadiAbVaHava" />
+                <ScalarProperty Name="KharoBar" ColumnName="KharoBar" />
+                <ScalarProperty Name="FogholadehShoghl" ColumnName="FogholadehShoghl" />
+                <ScalarProperty Name="SayerMazaya" ColumnName="SayerMazaya" />
+                <ScalarProperty Name="shift" ColumnName="shift" />
+                <ScalarProperty Name="Khiyabaan" ColumnName="Khiyabaan" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="desc_grad" ColumnName="desc_grad" />
+                <ScalarProperty Name="Takhasos" ColumnName="Takhasos" />
+                <ScalarProperty Name="TarikhAkhz" ColumnName="TarikhAkhz" />
+                <ScalarProperty Name="NameDaneshGah" ColumnName="NameDaneshGah" />
+                <ScalarProperty Name="NameReshteh" ColumnName="NameReshteh" />
+                <ScalarProperty Name="Gerayeshtahsili" ColumnName="Gerayeshtahsili" />
+                <ScalarProperty Name="MahalKar" ColumnName="MahalKar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tarikh_Shoro" ColumnName="Tarikh_Shoro" />
+                <ScalarProperty Name="Tarikh_Khatemeh" ColumnName="Tarikh_Khatemeh" />
+                <ScalarProperty Name="Moddat" ColumnName="Moddat" />
+                <ScalarProperty Name="Proj_Code" ColumnName="Proj_Code" />
+                <ScalarProperty Name="Proj_Name" ColumnName="Proj_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sharh_Onvan" ColumnName="Sharh_Onvan" />
+                <ScalarProperty Name="Kod_Onvan" ColumnName="Kod_Onvan" />
+                <ScalarProperty Name="Tarikh_ShoroKarDakhelSherkat" ColumnName="Tarikh_ShoroKarDakhelSherkat" />
+                <ScalarProperty Name="Tarikh_KhatemehKarDakhelSherkat" ColumnName="Tarikh_KhatemehKarDakhelSherkat" />
+                <ScalarProperty Name="Modat" ColumnName="Modat" />
+                <ScalarProperty Name="Emtiaz_Fard" ColumnName="Emtiaz_Fard" />
+                <ScalarProperty Name="Emtiaz_Sholghl" ColumnName="Emtiaz_Sholghl" />
+                <ScalarProperty Name="Rotbeh_Shoghl" ColumnName="Rotbeh_Shoghl" />
+                <ScalarProperty Name="Rotbeh_Takhsisi" ColumnName="Rotbeh_Takhsisi" />
+                <ScalarProperty Name="Noe_Eshteghal" ColumnName="Noe_Eshteghal" />
+                <ScalarProperty Name="Desc_Shift" ColumnName="Desc_Shift" />
+                <ScalarProperty Name="Desc_Noe_EstekhDam" ColumnName="Desc_Noe_EstekhDam" />
+                <ScalarProperty Name="MAhalTavalod" ColumnName="MAhalTavalod" />
+                <ScalarProperty Name="MahalSodoor" ColumnName="MahalSodoor" />
+                <ScalarProperty Name="Desc_Jensiat" ColumnName="Desc_Jensiat" />
+                <ScalarProperty Name="Moavenat" ColumnName="Moavenat" />
+                <ScalarProperty Name="ShomarehBimeh" ColumnName="ShomarehBimeh" />
+                <ScalarProperty Name="NamLatin" ColumnName="NamLatin" />
+                <ScalarProperty Name="NamKhanevadegiLatin" ColumnName="NamKhanevadegiLatin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ShomareEstekhdam" ColumnName="ShomareEstekhdam" />
+                <ScalarProperty Name="AddressEzterari" ColumnName="AddressEzterari" />
+                <ScalarProperty Name="TelephoneEzterari" ColumnName="TelephoneEzterari" />
+                <ScalarProperty Name="GorohKhoni" ColumnName="GorohKhoni" />
+                <ScalarProperty Name="Noe_Sherkat" ColumnName="Noe_Sherkat" />
+                <ScalarProperty Name="VaziatTaahol" ColumnName="VaziatTaahol" />
+                <ScalarProperty Name="KodMeli" ColumnName="KodMeli" />
+                <ScalarProperty Name="SaghfSaat" ColumnName="SaghfSaat" />
+                <ScalarProperty Name="VaziatJesmani" ColumnName="VaziatJesmani" />
+                <ScalarProperty Name="NoeBimeh" ColumnName="NoeBimeh" />
+                <ScalarProperty Name="NoeNaghseOzv" ColumnName="NoeNaghseOzv" />
+                <ScalarProperty Name="MahdoodiathaiPezeshki" ColumnName="MahdoodiathaiPezeshki" />
+                <ScalarProperty Name="HaghTakhasos" ColumnName="HaghTakhasos" />
+                <ScalarProperty Name="NoeZaban" ColumnName="NoeZaban" />
+                <ScalarProperty Name="MizanKhandan" ColumnName="MizanKhandan" />
+                <ScalarProperty Name="MizanNeveshTan" ColumnName="MizanNeveshTan" />
+                <ScalarProperty Name="MizanMokalemeh" ColumnName="MizanMokalemeh" />
+                <ScalarProperty Name="Din" ColumnName="Din" />
+                <ScalarProperty Name="Mazhab" ColumnName="Mazhab" />
+                <ScalarProperty Name="VaziatNezamVazifeh" ColumnName="VaziatNezamVazifeh" />
+                <ScalarProperty Name="Tabaghe" ColumnName="Tabaghe" />
+                <ScalarProperty Name="Cd_section" ColumnName="Cd_section" />
+                <ScalarProperty Name="Section_Cource" ColumnName="Section_Cource" />
+                <ScalarProperty Name="Work_Num" ColumnName="Work_Num" />
+                <ScalarProperty Name="Code_Grad" ColumnName="Code_Grad" />
+                <ScalarProperty Name="Nezam" ColumnName="Nezam" />
+                <ScalarProperty Name="TYPE_ONVAN" ColumnName="TYPE_ONVAN" />
+                <ScalarProperty Name="NoeGhateRabeteh" ColumnName="NoeGhateRabeteh" />
+                <ScalarProperty Name="TarikhGhateRabeteh" ColumnName="TarikhGhateRabeteh" />
+                <ScalarProperty Name="ShomarePostSazmani" ColumnName="ShomarePostSazmani" />
+                <ScalarProperty Name="NumBuild" ColumnName="NumBuild" />
+                <ScalarProperty Name="SaatKarKharej" ColumnName="SaatKarKharej" />
+                <ScalarProperty Name="CodPosty" ColumnName="CodPosty" />
+                <ScalarProperty Name="NamRabet" ColumnName="NamRabet" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Desc_EllatGhateRabeteh" ColumnName="Desc_EllatGhateRabeteh" />
+                <ScalarProperty Name="TozihatHoghogh" ColumnName="TozihatHoghogh" />
+                <ScalarProperty Name="MahalAkhzMadrak" ColumnName="MahalAkhzMadrak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthVisitViews">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthVisitView">
+              <MappingFragment StoreEntitySet="HealthVisitView">
+                <ScalarProperty Name="KodMeli" ColumnName="KodMeli" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="CodeMeli" ColumnName="CodeMeli" />
+                <ScalarProperty Name="Radif_Darman" ColumnName="Radif_Darman" />
+                <ScalarProperty Name="ContractNo" ColumnName="ContractNo" />
+                <ScalarProperty Name="Proj_Name" ColumnName="Proj_Name" />
+                <ScalarProperty Name="Proj_Code" ColumnName="Proj_Code" />
+                <ScalarProperty Name="pardakhti" ColumnName="pardakhti" />
+                <ScalarProperty Name="DeletedMoney" ColumnName="DeletedMoney" />
+                <ScalarProperty Name="AddedMoney" ColumnName="AddedMoney" />
+                <ScalarProperty Name="Darkhasty" ColumnName="Darkhasty" />
+                <ScalarProperty Name="Franshiz" ColumnName="Franshiz" />
+                <ScalarProperty Name="GairTaahod" ColumnName="GairTaahod" />
+                <ScalarProperty Name="Taeed" ColumnName="Taeed" />
+                <ScalarProperty Name="Khesarat" ColumnName="Khesarat" />
+                <ScalarProperty Name="SharhDarman" ColumnName="SharhDarman" />
+                <ScalarProperty Name="iiiiii" ColumnName="iiiiii" />
+                <ScalarProperty Name="ppppp" ColumnName="ppppp" />
+                <ScalarProperty Name="Tarikh" ColumnName="Tarikh" />
+                <ScalarProperty Name="RadifVorood" ColumnName="RadifVorood" />
+                <ScalarProperty Name="ShomareBasteErsalBeBime" ColumnName="ShomareBasteErsalBeBime" />
+                <ScalarProperty Name="TarikhErsalBeBime" ColumnName="TarikhErsalBeBime" />
+                <ScalarProperty Name="ShVaziatBaste" ColumnName="ShVaziatBaste" />
+                <ScalarProperty Name="Nesbat" ColumnName="Nesbat" />
+                <ScalarProperty Name="NamBimar" ColumnName="NamBimar" />
+                <ScalarProperty Name="NamKhanevadegi" ColumnName="NamKhanevadegi" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Prsnum" ColumnName="Prsnum" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthContracts">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthContract">
+              <MappingFragment StoreEntitySet="HealthContracts">
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="ContractDateTill" ColumnName="ContractDateTill" />
+                <ScalarProperty Name="ContractDateAsOf" ColumnName="ContractDateAsOf" />
+                <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+                <ScalarProperty Name="ContractNo" ColumnName="ContractNo" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prs_Aelemandi">
+            <EntityTypeMapping TypeName="TotalNewModel.Prs_Aelemandi">
+              <MappingFragment StoreEntitySet="Prs_Aelemandi">
+                <ScalarProperty Name="CodeMeli" ColumnName="CodeMeli" />
+                <ScalarProperty Name="Radif_Darman" ColumnName="Radif_Darman" />
+                <ScalarProperty Name="Tarikh_AraeeMadarek" ColumnName="Tarikh_AraeeMadarek" />
+                <ScalarProperty Name="Tarikh_Bimeh" ColumnName="Tarikh_Bimeh" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="BimehShodehYaNashode" ColumnName="BimehShodehYaNashode" />
+                <ScalarProperty Name="Tahttakafol" ColumnName="Tahttakafol" />
+                <ScalarProperty Name="Nesbat" ColumnName="Nesbat" />
+                <ScalarProperty Name="Tarikh_Fot" ColumnName="Tarikh_Fot" />
+                <ScalarProperty Name="Tarikh_Talagh" ColumnName="Tarikh_Talagh" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="AddressMahalKar" ColumnName="AddressMahalKar" />
+                <ScalarProperty Name="MahelKar" ColumnName="MahelKar" />
+                <ScalarProperty Name="Shoghl" ColumnName="Shoghl" />
+                <ScalarProperty Name="Tarikh_Azdevaj" ColumnName="Tarikh_Azdevaj" />
+                <ScalarProperty Name="Tarikh_Tavalot" ColumnName="Tarikh_Tavalot" />
+                <ScalarProperty Name="MahelTavalotID" ColumnName="MahelTavalotID" />
+                <ScalarProperty Name="MahalSodorID" ColumnName="MahalSodorID" />
+                <ScalarProperty Name="Din" ColumnName="Din" />
+                <ScalarProperty Name="Mazhab" ColumnName="Mazhab" />
+                <ScalarProperty Name="NamPedar" ColumnName="NamPedar" />
+                <ScalarProperty Name="ShomareShenasNameh" ColumnName="ShomareShenasNameh" />
+                <ScalarProperty Name="NamKhanevadegi" ColumnName="NamKhanevadegi" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Radif" ColumnName="Radif" />
+                <ScalarProperty Name="PrsNum" ColumnName="PrsNum" />
+                <ScalarProperty Name="MasterObjectId" ColumnName="MasterObjectId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthShoParBaches">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthShoParBach">
+              <MappingFragment StoreEntitySet="HealthShoParBach">
+                <ScalarProperty Name="VaziatBaste" ColumnName="VaziatBaste" />
+                <ScalarProperty Name="TobimeNahaee" ColumnName="TobimeNahaee" />
+                <ScalarProperty Name="ToBimeAvalie" ColumnName="ToBimeAvalie" />
+                <ScalarProperty Name="ShomareParvande" ColumnName="ShomareParvande" />
+                <ScalarProperty Name="MahBachNo" ColumnName="MahBachNo" />
+                <ScalarProperty Name="Mah" ColumnName="Mah" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthRecipeViews">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthRecipeView">
+              <MappingFragment StoreEntitySet="HealthRecipeView">
+                <ScalarProperty Name="ContractDateTill" ColumnName="ContractDateTill" />
+                <ScalarProperty Name="ContractDateAsOf" ColumnName="ContractDateAsOf" />
+                <ScalarProperty Name="ContractNo" ColumnName="ContractNo" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="MaxMoney4Pay" ColumnName="MaxMoney4Pay" />
+                <ScalarProperty Name="MinMoney4Pay" ColumnName="MinMoney4Pay" />
+                <ScalarProperty Name="Franshiz" ColumnName="Franshiz" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="KindID" ColumnName="KindID" />
+                <ScalarProperty Name="RKD" ColumnName="RKD" />
+                <ScalarProperty Name="DoctorDesc" ColumnName="DoctorDesc" />
+                <ScalarProperty Name="ChandNafar" ColumnName="ChandNafar" />
+                <ScalarProperty Name="Kardex" ColumnName="Kardex" />
+                <ScalarProperty Name="RecipeDesc" ColumnName="RecipeDesc" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthRecipeKinds">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthRecipeKind">
+              <MappingFragment StoreEntitySet="HealthRecipeKind">
+                <ScalarProperty Name="RecipeDesc" ColumnName="RecipeDesc" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthRecipeProperties">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthRecipeProperty">
+              <MappingFragment StoreEntitySet="HealthRecipeProperties">
+                <ScalarProperty Name="ChandNafar" ColumnName="ChandNafar" />
+                <ScalarProperty Name="Kardex" ColumnName="Kardex" />
+                <ScalarProperty Name="Franshiz" ColumnName="Franshiz" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="MinMoney4Pay" ColumnName="MinMoney4Pay" />
+                <ScalarProperty Name="MaxMoney4Pay" ColumnName="MaxMoney4Pay" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="KindID" ColumnName="KindID" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthVisitForWebs">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthVisitForWeb">
+              <MappingFragment StoreEntitySet="HealthVisitForWeb">
+                <ScalarProperty Name="ContractDateAsOf" ColumnName="ContractDateAsOf" />
+                <ScalarProperty Name="ShomareParvande" ColumnName="ShomareParvande" />
+                <ScalarProperty Name="ToBimeAvalie" ColumnName="ToBimeAvalie" />
+                <ScalarProperty Name="TobimeNahaee" ColumnName="TobimeNahaee" />
+                <ScalarProperty Name="VaziatBaste" ColumnName="VaziatBaste" />
+                <ScalarProperty Name="NamkhanevadegiBimar" ColumnName="NamkhanevadegiBimar" />
+                <ScalarProperty Name="NamBimar" ColumnName="NamBimar" />
+                <ScalarProperty Name="NamVanesbatBimar" ColumnName="NamVanesbatBimar" />
+                <ScalarProperty Name="ContractNo" ColumnName="ContractNo" />
+                <ScalarProperty Name="nesbat" ColumnName="nesbat" />
+                <ScalarProperty Name="Vazeyat" ColumnName="Vazeyat" />
+                <ScalarProperty Name="مبلغ_نهایی" ColumnName="مبلغ نهایی" />
+                <ScalarProperty Name="مبلغ_کسر_شده" ColumnName="مبلغ کسر شده" />
+                <ScalarProperty Name="مبلغ_اضافه_شده" ColumnName="مبلغ اضافه شده" />
+                <ScalarProperty Name="مبلغ_تایید" ColumnName="مبلغ تایید" />
+                <ScalarProperty Name="فرانشیز" ColumnName="فرانشیز" />
+                <ScalarProperty Name="مبلغ_غیر_تعهد" ColumnName="مبلغ غیر تعهد" />
+                <ScalarProperty Name="مبلغ_تایید_شده" ColumnName="مبلغ تایید شده" />
+                <ScalarProperty Name="مبلغ_نسخه" ColumnName="مبلغ نسخه" />
+                <ScalarProperty Name="RecipeDate" ColumnName="RecipeDate" />
+                <ScalarProperty Name="RKD" ColumnName="RKD" />
+                <ScalarProperty Name="DoctorDesc" ColumnName="DoctorDesc" />
+                <ScalarProperty Name="ChandNafar" ColumnName="ChandNafar" />
+                <ScalarProperty Name="Kardex" ColumnName="Kardex" />
+                <ScalarProperty Name="RecipeDesc" ColumnName="RecipeDesc" />
+                <ScalarProperty Name="RadifVorood" ColumnName="RadifVorood" />
+                <ScalarProperty Name="MahBachNo" ColumnName="MahBachNo" />
+                <ScalarProperty Name="Mah" ColumnName="Mah" />
+                <ScalarProperty Name="NamKhanevadegi" ColumnName="NamKhanevadegi" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Prsnum" ColumnName="Prsnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthVisits">
+            <EntityTypeMapping TypeName="TotalNewModel.HealthVisit">
+              <MappingFragment StoreEntitySet="HealthVisit">
+                <ScalarProperty Name="PgNumBach" ColumnName="PgNumBach" />
+                <ScalarProperty Name="FinalMoney4Pay" ColumnName="FinalMoney4Pay" />
+                <ScalarProperty Name="DeletedMoney" ColumnName="DeletedMoney" />
+                <ScalarProperty Name="AddedMoney" ColumnName="AddedMoney" />
+                <ScalarProperty Name="ApprovedMoney" ColumnName="ApprovedMoney" />
+                <ScalarProperty Name="Franshiz" ColumnName="Franshiz" />
+                <ScalarProperty Name="OutofContractMoney" ColumnName="OutofContractMoney" />
+                <ScalarProperty Name="ApprovedDamegMoney" ColumnName="ApprovedDamegMoney" />
+                <ScalarProperty Name="RecipeMoney" ColumnName="RecipeMoney" />
+                <ScalarProperty Name="Tarikh" ColumnName="Tarikh" />
+                <ScalarProperty Name="RecipeDate" ColumnName="RecipeDate" />
+                <ScalarProperty Name="RecipePropertiesId" ColumnName="RecipePropertiesId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="BachId" ColumnName="BachId" />
+                <ScalarProperty Name="RadifVorood" ColumnName="RadifVorood" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prs_Personel">
+            <EntityTypeMapping TypeName="TotalNewModel.Prs_Personel">
+              <MappingFragment StoreEntitySet="Prs_Personel">
+                <ScalarProperty Name="TozihatHoghogh" ColumnName="TozihatHoghogh" />
+                <ScalarProperty Name="EllateGhateRabeteh" ColumnName="EllateGhateRabeteh" />
+                <ScalarProperty Name="SaatKarKharej" ColumnName="SaatKarKharej" />
+                <ScalarProperty Name="NumBuild" ColumnName="NumBuild" />
+                <ScalarProperty Name="VaziatNezamVazifeh" ColumnName="VaziatNezamVazifeh" />
+                <ScalarProperty Name="Noe_Sherkat" ColumnName="Noe_Sherkat" />
+                <ScalarProperty Name="shift" ColumnName="shift" />
+                <ScalarProperty Name="MahdoodiathaiPezeshki" ColumnName="MahdoodiathaiPezeshki" />
+                <ScalarProperty Name="SaghfSaat" ColumnName="SaghfSaat" />
+                <ScalarProperty Name="NoeNaghseOzv" ColumnName="NoeNaghseOzv" />
+                <ScalarProperty Name="VaziatJesmani" ColumnName="VaziatJesmani" />
+                <ScalarProperty Name="SayerMazaya" ColumnName="SayerMazaya" />
+                <ScalarProperty Name="FogholadehShoghl" ColumnName="FogholadehShoghl" />
+                <ScalarProperty Name="KharoBar" ColumnName="KharoBar" />
+                <ScalarProperty Name="BadiAbVaHava" ColumnName="BadiAbVaHava" />
+                <ScalarProperty Name="HaghMaskan" ColumnName="HaghMaskan" />
+                <ScalarProperty Name="FogholAdeMahalKhedmat" ColumnName="FogholAdeMahalKhedmat" />
+                <ScalarProperty Name="Sayer_Hoghogh" ColumnName="Sayer_Hoghogh" />
+                <ScalarProperty Name="Tatbigh3Gane" ColumnName="Tatbigh3Gane" />
+                <ScalarProperty Name="TatBigh_Hadeaghal_Hoghogh" ColumnName="TatBigh_Hadeaghal_Hoghogh" />
+                <ScalarProperty Name="TatBigh_Jazb" ColumnName="TatBigh_Jazb" />
+                <ScalarProperty Name="TatBigh_Hoghogh" ColumnName="TatBigh_Hoghogh" />
+                <ScalarProperty Name="TashilatZendegi" ColumnName="TashilatZendegi" />
+                <ScalarProperty Name="MohitKar" ColumnName="MohitKar" />
+                <ScalarProperty Name="Takhasos" ColumnName="Takhasos" />
+                <ScalarProperty Name="SehGaneh" ColumnName="SehGaneh" />
+                <ScalarProperty Name="Mantagheh" ColumnName="Mantagheh" />
+                <ScalarProperty Name="Sarparasti" ColumnName="Sarparasti" />
+                <ScalarProperty Name="MazayeShoghl" ColumnName="MazayeShoghl" />
+                <ScalarProperty Name="TedadFarzandVajedHaghOlad" ColumnName="TedadFarzandVajedHaghOlad" />
+                <ScalarProperty Name="Olad" ColumnName="Olad" />
+                <ScalarProperty Name="Alemandi" ColumnName="Alemandi" />
+                <ScalarProperty Name="SakhtiKar" ColumnName="SakhtiKar" />
+                <ScalarProperty Name="Jazb" ColumnName="Jazb" />
+                <ScalarProperty Name="Hoghogh" ColumnName="Hoghogh" />
+                <ScalarProperty Name="Mahdodiyet" ColumnName="Mahdodiyet" />
+                <ScalarProperty Name="GorohKhoni" ColumnName="GorohKhoni" />
+                <ScalarProperty Name="VazeyatPezeshki" ColumnName="VazeyatPezeshki" />
+                <ScalarProperty Name="ModatMamoriat" ColumnName="ModatMamoriat" />
+                <ScalarProperty Name="Tarikh_Khatemeh_Mamoriat" ColumnName="Tarikh_Khatemeh_Mamoriat" />
+                <ScalarProperty Name="Tarikh_Shoroe_Mamoriat" ColumnName="Tarikh_Shoroe_Mamoriat" />
+                <ScalarProperty Name="Mamor" ColumnName="Mamor" />
+                <ScalarProperty Name="TarikhGhateRabeteh" ColumnName="TarikhGhateRabeteh" />
+                <ScalarProperty Name="NoeGhateRabeteh" ColumnName="NoeGhateRabeteh" />
+                <ScalarProperty Name="NoeEshteghal" ColumnName="NoeEshteghal" />
+                <ScalarProperty Name="NamRabet" ColumnName="NamRabet" />
+                <ScalarProperty Name="TelephoneEzterari" ColumnName="TelephoneEzterari" />
+                <ScalarProperty Name="AddressEzterari" ColumnName="AddressEzterari" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="VaziatMaskan" ColumnName="VaziatMaskan" />
+                <ScalarProperty Name="TarikhEstekhdam" ColumnName="TarikhEstekhdam" />
+                <ScalarProperty Name="NoeEstekhdam" ColumnName="NoeEstekhdam" />
+                <ScalarProperty Name="NamKhanevadegiLatin" ColumnName="NamKhanevadegiLatin" />
+                <ScalarProperty Name="NamLatin" ColumnName="NamLatin" />
+                <ScalarProperty Name="NoeBimeh" ColumnName="NoeBimeh" />
+                <ScalarProperty Name="ShomarehBimeh" ColumnName="ShomarehBimeh" />
+                <ScalarProperty Name="KodMeli" ColumnName="KodMeli" />
+                <ScalarProperty Name="Mazhab" ColumnName="Mazhab" />
+                <ScalarProperty Name="Din" ColumnName="Din" />
+                <ScalarProperty Name="VaziatTaahol" ColumnName="VaziatTaahol" />
+                <ScalarProperty Name="Tabeiet" ColumnName="Tabeiet" />
+                <ScalarProperty Name="Jensiat" ColumnName="Jensiat" />
+                <ScalarProperty Name="MahalSodourID" ColumnName="MahalSodourID" />
+                <ScalarProperty Name="MahalTavalodID" ColumnName="MahalTavalodID" />
+                <ScalarProperty Name="TarikhTavalod" ColumnName="TarikhTavalod" />
+                <ScalarProperty Name="NamPedar" ColumnName="NamPedar" />
+                <ScalarProperty Name="ShomareShenasname" ColumnName="ShomareShenasname" />
+                <ScalarProperty Name="NamKhanevadegi" ColumnName="NamKhanevadegi" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="Prsnum" ColumnName="Prsnum" />
+                <ScalarProperty Name="ShomareEstekhdam" ColumnName="ShomareEstekhdam" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
