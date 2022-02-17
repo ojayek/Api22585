@@ -6,13 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f2340a15fba94084a13f0fde74542d3e" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="TotalNewModel.Prs_GeneralView" Width="2.25" PointX="0.75" PointY="0.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="TotalNewModel.HealthVisitView" Width="1.5" PointX="3.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="TotalNewModel.HealthVisitView" Width="1.5" PointX="3.375" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TotalNewModel.HealthContract" Width="1.5" PointX="3.375" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TotalNewModel.Prs_Aelemandi" Width="1.5" PointX="8.375" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TotalNewModel.HealthShoParBach" Width="1.5" PointX="7.875" PointY="7.875" />
         <EntityTypeShape EntityType="TotalNewModel.HealthRecipeView" Width="2" PointX="10.375" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TotalNewModel.HealthRecipeKind" Width="2.375" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TotalNewModel.HealthRecipeProperty" Width="2.75" PointX="2.125" PointY="4.375" />
+        <EntityTypeShape EntityType="TotalNewModel.HealthRecipeProperty" Width="2.75" PointX="0.625" PointY="4.375" />
         <AssociationConnector Association="TotalNewModel.FK_HealthRecipeProperties_HealthContracts" />
         <AssociationConnector Association="TotalNewModel.FK_HealthRecipeProperties_HealthRecipeKind" />
         <EntityTypeShape EntityType="TotalNewModel.HealthVisitForWeb" Width="1.5" PointX="0.75" PointY="8.75" />

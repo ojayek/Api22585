@@ -45,5 +45,6 @@ namespace CreateXmlWebApi.Models
         public bool ToBimeAvalie { get; set; }
         public string ShomareParvande { get; set; }
         public string ContractDateAsOf { get; set; }
+        public System.Guid ObjectId { get; set; }
     }
 }

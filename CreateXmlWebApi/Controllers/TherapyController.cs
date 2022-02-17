@@ -175,13 +175,13 @@ namespace CreateXmlWebApi.Controllers
 
                 if (string.IsNullOrEmpty(ContractNo))
                 {
-                    VisitData = db.HealthVisitForWebs.Where(o => o.Prsnum == Prsnum).ToList();
+                    VisitData = db.HealthVisitForWebs.Where(o => o.Prsnum == Prsnum).OrderBy(o => o.VaziatBaste).ToList();
                     return VisitData;
 
                 }
                 else
                 {
-                    VisitData = db.HealthVisitForWebs.Where(o => o.Prsnum == Prsnum && o.ContractNo == ContractNo).ToList();
+                    VisitData = db.HealthVisitForWebs.Where(o => o.Prsnum == Prsnum && o.ContractNo == ContractNo).OrderBy(o=>o.VaziatBaste).ToList();
                     return VisitData;
                 }
             }
@@ -194,36 +194,100 @@ namespace CreateXmlWebApi.Controllers
 
         }
 
-        /*  [HttpGet]
-          [Route("api/Therapy/GetAllPack/{MahBachNo:int?}")]
-          public List<HealthVisitView> GetAllPack(int? MahBachNo)
-          {
-              var httpContext = HttpContext.Current;
-              var ContractNo = httpContext.Request.Headers["ContractNo"];
-              var VisitData = new List<HealthVisitView>();
-              if (MahBachNo != null)
-              {
+        [HttpGet]
+        [Route("api/Therapy/GetPacketData/{MahBachNo}")]
+        public Object GetPacketData(string MahBachNo)
+        {
+            var httpContext = HttpContext.Current;           
+            var VisitData = new List<Object>();
+            var totalSum = 0;
 
-                  if (string.IsNullOrEmpty(ContractNo))
-                  {
-                      VisitData = db.HealthVisitView.Where(o => o.MahBachNo == MahBachNo).ToList();
-                      return VisitData;
+            if (MahBachNo != null)
+            {
 
-                  }
-                  else
-                  {
-                      VisitData = db.HealthVisitView.Where(o => o.MahBachNo == MahBachNo && o.ContractNo == ContractNo).ToList();
-                      return VisitData;
-                  }
-              }
-              else
-              {
-                  VisitData = db.HealthVisitView.Take(30).ToList();
-                  return VisitData;
-              }
+                if (!string.IsNullOrEmpty(MahBachNo))
+                {
+                    var packetNo = int.Parse(MahBachNo);
+                    var VisitDataTemp = db.HealthVisitViews.Where(o => o.ShomareBasteErsalBeBime == packetNo).ToList();
+                    var rowNumber = 0;
+                    var index = 1;
+                  
+                    var visitDataUniquePrsnum = VisitDataTemp.DistinctBy(o => o.Prsnum).Select(o => o.Prsnum);
+                    foreach (var prsnum in visitDataUniquePrsnum)
+                    {
+
+                        Decimal explainedCost = 0;
+                        Decimal confirmedCost = 0;
+                        Decimal outOfContractCost = 0;
+                        Decimal faranshizCost = 0;
+                        Decimal paidValue = 0;
+                      
+
+                        foreach (var item in VisitDataTemp.Where(o=>o.Prsnum==prsnum))
+                        {
+                            rowNumber = rowNumber + 1;
+                            index = index + 1;
+                            var newObj = new
+                            {
+                                index = index,
+                                rowNumber = rowNumber,
+                                prsCode = item.Prsnum,
+                                Nam = item.Nam,
+                                nationalId = item.CodeMeli,
+                                lastName = item.NamKhanevadegi,
+                                patientName = item.NamBimar,
+                                patientRelative = item.Nesbat,
+                                prescriptionDate = item.Tarikh,
+                                explainedCost = item.Khesarat,
+                                confirmedCost = item.Taeed,
+                                outOfContractCost = item.GairTaahod,
+                                faranshizCost = item.Franshiz,
+                                paidValue = item.pardakhti,
+                                description = item.SharhDarman
+                            };
+                            explainedCost += item.Khesarat;
+                            confirmedCost += item.Taeed!=null?item.Taeed.Value:0;
+                            outOfContractCost += item.GairTaahod != null ? item.GairTaahod.Value : 0;
+                            faranshizCost += item.Franshiz != null ? item.Franshiz.Value : 0;
+                            paidValue += item.pardakhti != null ? item.pardakhti.Value : 0;
+
+                            VisitData.Add(newObj);
+                        }
+                        var newTotalObj = new
+                        {
+                            index = index+1,
+                            rowNumber = "جمع",
+                            prsCode = prsnum,
+                            Nam = "",
+                            lastName = "",
+                            patientName ="",
+                            patientRelative = "",
+                            prescriptionDate = "",
+                            nationalId = "",
+                            explainedCost = explainedCost,
+                            confirmedCost = confirmedCost,
+                            outOfContractCost = outOfContractCost,
+                            faranshizCost = faranshizCost,
+                            paidValue =paidValue,
+                            description = ""
+                        };
+                        totalSum += int.Parse(paidValue.ToString());
+                        VisitData.Add(newTotalObj);
+
+                    }
+                    return new { totalSum, VisitData };
+
+                }
+                else return new { totalSum, VisitData };
+
+            }
+            else
+            {               
+                return new { totalSum, VisitData };
+            }
 
 
-          } */
+        }
 
         [HttpGet]
         [Route("api/Therapy/GetHealthRecipes/")]
@@ -398,12 +462,13 @@ namespace CreateXmlWebApi.Controllers
         public object CreateOrUpdateHealthVisit(string Id)
         {
             var hv = new HealthVisit();
+            var req = HttpContext.Current.Request;
             try
             {
                 if (Id == "0")
                 {
                     hv.ObjectId = Guid.NewGuid();
-                    FillPropOfHealthVisit(hv);
+                    FillPropOfHealthVisit(hv,req);
                     db.HealthVisits.Add(hv);
                     db.SaveChanges();
                     
@@ -414,7 +479,7 @@ namespace CreateXmlWebApi.Controllers
                     hv = db.HealthVisits.Where(o => o.ObjectId == new Guid(Id)).FirstOrDefault();
                     if (hv != null)
                     {
-                        FillPropOfHealthVisit(hv);
+                        FillPropOfHealthVisit(hv,req);
                     }
                     db.SaveChanges();
                     return new { Update = true, Insert = false, Data = hv, Desc = "Updated Successfully" };
@@ -737,13 +802,13 @@ namespace CreateXmlWebApi.Controllers
         }
 
 
-        private void FillPropOfHealthVisit(HealthVisit hv)
+        private void FillPropOfHealthVisit(HealthVisit hv,HttpRequest req)
         {
             var newhv = hv;
             try
             {
 
-                hv.BachId =new Guid(HttpContext.Current.Request.Form["BatchId"]);
+                hv.BachId =new Guid(req.Form["BatchId"]);
             }
             catch (Exception ex)
             {
@@ -752,10 +817,10 @@ namespace CreateXmlWebApi.Controllers
             }
             try
             {
-                var prsnum = HttpContext.Current.Request.Form["PrsNum"];
+                var prsnum =int.Parse(req.Form["PrsNum"]);
+                
 
-
-               var prsGuid=db.Prs_Aelemandi.Where(o=>o.PrsNum == int.Parse(prsnum)).SingleOrDefault() ;
+               var prsGuid=db.Prs_Aelemandi.Where(o=>o.PrsNum == prsnum && o.Nesbat==0).SingleOrDefault() ;
                 if(prsGuid != null)
                 {
                     hv.PersonelId = prsGuid.MasterObjectId;
@@ -773,7 +838,7 @@ namespace CreateXmlWebApi.Controllers
             try
             {
 
-                hv.PatientId =new Guid(HttpContext.Current.Request.Form["PatientId"]);
+                hv.PatientId =new Guid(req.Form["PatientId"]);
             }
             catch (Exception ex)
             {
@@ -783,7 +848,7 @@ namespace CreateXmlWebApi.Controllers
             try
             {
 
-                hv.RecipeDate = PersianToEnglish(HttpContext.Current.Request.Form["RecipeDate"]);
+                hv.RecipeDate = PersianToEnglish(req.Form["RecipeDate"]);
             }
             catch (Exception)
             {
@@ -793,7 +858,7 @@ namespace CreateXmlWebApi.Controllers
             try
             {
 
-                hv.RecipeMoney = int.Parse(HttpContext.Current.Request.Form["RecipeMoney"]);
+                hv.RecipeMoney = int.Parse(req.Form["RecipeMoney"]);
                
             }
             catch (Exception ex)
@@ -803,12 +868,32 @@ namespace CreateXmlWebApi.Controllers
             try
             {
 
-                hv.RecipePropertiesId = new Guid (HttpContext.Current.Request.Form["RecipePropertiesId"]);
+                hv.RecipePropertiesId = new Guid (req.Form["RecipePropertiesId"]);
 
             }
             catch (Exception ex)
             {
                 hv.RecipePropertiesId = newhv.RecipePropertiesId;
+            }
+            try
+            {
+
+                hv.Franshiz =int.Parse(req.Form["Franshiz"]);
+
+            }
+            catch (Exception ex)
+            {
+                hv.Franshiz = 0;
+            }
+            try
+            {
+
+                hv.OutofContractMoney = int.Parse(req.Form["OutofContractMoney"]);
+
+            }
+            catch (Exception ex)
+            {
+                hv.OutofContractMoney = 0;
             }
         }
 

@@ -227,6 +227,7 @@ warning 6002: The table/view 'TotalNew.dbo.HealthVisitForWeb' does not have a pr
             <PropertyRef Name="ToBimeAvalie" />
             <PropertyRef Name="ShomareParvande" />
             <PropertyRef Name="ContractDateAsOf" />
+            <PropertyRef Name="ObjectId" />
           </Key>
           <Property Name="Prsnum" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Nam" Type="nvarchar" MaxLength="50" />
@@ -259,6 +260,7 @@ warning 6002: The table/view 'TotalNew.dbo.HealthVisitForWeb' does not have a pr
           <Property Name="ToBimeAvalie" Type="bit" Nullable="false" />
           <Property Name="ShomareParvande" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="ContractDateAsOf" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ObjectId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TotalNew.dbo.HealthVisitView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -523,7 +525,8 @@ warning 6002: The table/view 'TotalNew.dbo.Prs_GeneralView' does not have a prim
     [HealthVisitForWeb].[TobimeNahaee] AS [TobimeNahaee], 
     [HealthVisitForWeb].[ToBimeAvalie] AS [ToBimeAvalie], 
     [HealthVisitForWeb].[ShomareParvande] AS [ShomareParvande], 
-    [HealthVisitForWeb].[ContractDateAsOf] AS [ContractDateAsOf]
+    [HealthVisitForWeb].[ContractDateAsOf] AS [ContractDateAsOf], 
+    [HealthVisitForWeb].[ObjectId] AS [ObjectId]
     FROM [dbo].[HealthVisitForWeb] AS [HealthVisitForWeb]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="HealthVisitView" EntityType="Self.HealthVisitView" store:Type="Views" store:Schema="dbo">
@@ -1025,6 +1028,7 @@ warning 6002: The table/view 'TotalNew.dbo.Prs_GeneralView' does not have a prim
             <PropertyRef Name="ToBimeAvalie" />
             <PropertyRef Name="ShomareParvande" />
             <PropertyRef Name="ContractDateAsOf" />
+            <PropertyRef Name="ObjectId" />
           </Key>
           <Property Name="Prsnum" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Nam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1057,6 +1061,7 @@ warning 6002: The table/view 'TotalNew.dbo.Prs_GeneralView' does not have a prim
           <Property Name="ToBimeAvalie" Type="Boolean" Nullable="false" />
           <Property Name="ShomareParvande" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="ContractDateAsOf" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ObjectId" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="HealthVisit">
           <Key>
@@ -1437,6 +1442,7 @@ warning 6002: The table/view 'TotalNew.dbo.Prs_GeneralView' does not have a prim
           <EntitySetMapping Name="HealthVisitForWebs">
             <EntityTypeMapping TypeName="TotalNewModel.HealthVisitForWeb">
               <MappingFragment StoreEntitySet="HealthVisitForWeb">
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="ContractDateAsOf" ColumnName="ContractDateAsOf" />
                 <ScalarProperty Name="ShomareParvande" ColumnName="ShomareParvande" />
                 <ScalarProperty Name="ToBimeAvalie" ColumnName="ToBimeAvalie" />
