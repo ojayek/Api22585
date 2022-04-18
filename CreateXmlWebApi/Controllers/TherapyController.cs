@@ -201,6 +201,8 @@ namespace CreateXmlWebApi.Controllers
             var httpContext = HttpContext.Current;           
             var VisitData = new List<Object>();
             var totalSum = 0;
+            var packetDate = "";
+            var packetNumber = "";
 
             if (MahBachNo != null)
             {
@@ -208,7 +210,9 @@ namespace CreateXmlWebApi.Controllers
                 if (!string.IsNullOrEmpty(MahBachNo))
                 {
                     var packetNo = int.Parse(MahBachNo);
+                    packetNumber = MahBachNo;
                     var VisitDataTemp = db.HealthVisitViews.Where(o => o.ShomareBasteErsalBeBime == packetNo).ToList();
+                    packetDate =( VisitDataTemp.FirstOrDefault() != null) ? VisitDataTemp.First().TarikhErsalBeBime : "";
                     var rowNumber = 0;
                     var index = 1;
                   
@@ -253,42 +257,94 @@ namespace CreateXmlWebApi.Controllers
 
                             VisitData.Add(newObj);
                         }
-                        var newTotalObj = new
-                        {
-                            index = index+1,
-                            rowNumber = "جمع",
-                            prsCode = prsnum,
-                            Nam = "",
-                            lastName = "",
-                            patientName ="",
-                            patientRelative = "",
-                            prescriptionDate = "",
-                            nationalId = "",
-                            explainedCost = explainedCost,
-                            confirmedCost = confirmedCost,
-                            outOfContractCost = outOfContractCost,
-                            faranshizCost = faranshizCost,
-                            paidValue =paidValue,
-                            description = ""
-                        };
+                        //var newTotalObj = new
+                        //{
+                        //    index = index+1,
+                        //    rowNumber = "جمع",
+                        //    prsCode = prsnum,
+                        //    Nam = "",
+                        //    lastName = "",
+                        //    patientName ="",
+                        //    patientRelative = "",
+                        //    prescriptionDate = "",
+                        //    nationalId = "",
+                        //    explainedCost = explainedCost,
+                        //    confirmedCost = confirmedCost,
+                        //    outOfContractCost = outOfContractCost,
+                        //    faranshizCost = faranshizCost,
+                        //    paidValue =paidValue,
+                        //    description = ""
+                        //};
                         totalSum += int.Parse(paidValue.ToString());
-                        VisitData.Add(newTotalObj);
+                        //VisitData.Add(newTotalObj);
 
                     }
-                    return new { totalSum, VisitData };
+                    return new { totalSum,packetDate,packetNumber, VisitData };
 
                 }
-                else return new { totalSum, VisitData };
+                else return new { totalSum, packetDate, packetNumber, VisitData };
 
             }
             else
-            {               
-                return new { totalSum, VisitData };
+            {
+                return new { totalSum, packetDate, packetNumber, VisitData };
             }
 
 
         }
 
+
+        [HttpGet]
+        [Route("api/Therapy/GetHealthRecipiesByPrsNumber/{PrsNumber}")]
+        public Object GetHealthRecipiesByPrsNumber(string PrsNumber)
+        {
+            var httpContext = HttpContext.Current;
+            var VisitData = new List<Object>();
+            var totalSum = 0;
+
+            if (PrsNumber != null)
+            {
+
+                if (!string.IsNullOrEmpty(PrsNumber))
+                {
+                    var prsNumber = int.Parse(PrsNumber);
+                    var VisitDataTemp = db.HealthVisitViews.Where(o => o.Prsnum == prsNumber).ToList();
+                    var rowNumber = 0;
+                    var index = 1;
+
+                    foreach (var item in VisitDataTemp)
+                        {
+                            rowNumber = rowNumber + 1;
+                            index = index + 1;
+                            var newObj = new
+                            {
+                                index = index,
+                                rowNumber = rowNumber,
+                                prsCode = item.Prsnum,
+                                Nam = item.Nam,
+                                nationalId = item.CodeMeli,
+                                lastName = item.NamKhanevadegi,
+                                patientName = item.NamBimar,
+                                patientRelative = item.Nesbat,
+                                prescriptionDate = item.Tarikh,
+                                explainedCost = item.Khesarat,
+                                confirmedCost = item.Taeed,
+                                outOfContractCost = item.GairTaahod,
+                                faranshizCost = item.Franshiz,
+                                paidValue = item.pardakhti,
+                                description = item.SharhDarman,
+                                status=item.ShVaziatBaste,
+                               
+                            };
+                           
+                            VisitData.Add(newObj);
+                        }                       
+                    }
+                    return new { totalSum, VisitData };
+                }
+            return new { totalSum, VisitData };
+
+        }
         [HttpGet]
         [Route("api/Therapy/GetHealthRecipes/")]
         public List<HealthRecipeView> GetHealthRecipes()
